@@ -1,0 +1,114 @@
+version: "3.9"
+
+services:
+  mobilys_be:
+    build:
+      context: ./mobilys-be
+      dockerfile: Dockerfile
+    container_name: mobilys_be
+    volumes:
+      - ./mobilys-be:/app
+    env_file:
+      - ./mobilys-be/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - app_net
+
+  mobilys_fe:
+    build:
+      context: ./mobilys-fe
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:8000/api
+        VITE_API_USERS_BASE_URL: http://localhost:8000/api
+    container_name: mobilys_fe
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    networks:
+      - app_net
+
+  db:
+    build:
+      context: ./mobilys-be
+      dockerfile: Dockerfile.db
+    container_name: mobilys_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mobilys
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_preload_libraries=pg_stat_statements,pg_cron"
+      - "-c"
+      - "pg_stat_statements.track=all"
+      - "-c"
+      - "log_min_duration_statement=1000"
+      - "-c"
+      - "pg_stat_statements.max=5000"
+      - "-c"
+      - "cron.database_name=mobilys"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_net
+
+  fastapi:
+    build:
+      context: ./mobilys-otp
+      dockerfile: Dockerfile.fastapi
+    container_name: otp-fastapi
+    volumes:
+      - ./mobilys-otp:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /app
+    ports:
+      - "8001:8001"
+    networks:
+      - app_net
+
+  validator:
+    build:
+      context: ./mobilys-gtfs-validator
+      dockerfile: Dockerfile
+    container_name: validator
+    volumes:
+      - ./mobilys-gtfs-validator:/app
+    networks:
+      - app_net
+
+  otp-router-base:
+    build:
+      context: ./mobilys-otp
+      dockerfile: Dockerfile.otp
+    image: otp-router-image
+    entrypoint:
+      - "echo"
+      - "OTP base image built."
+    restart: "no"
+    networks:
+      - app_net
+
+  nginx:
+    image: nginx:latest
+    container_name: otp-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./mobilys-otp/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./mobilys-otp/nginx/router_configs:/etc/nginx/conf.d/routers:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - app_net
+
+volumes:
+  postgres_data:
+
+networks:
+  app_net:
+    driver: bridge

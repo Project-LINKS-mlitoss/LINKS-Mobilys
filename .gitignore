@@ -1,0 +1,12 @@
+# Environment files
+.env
+*.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Bootstrapped/populated flags
+.user_data_populated
+.visualization_data_bootstrapped

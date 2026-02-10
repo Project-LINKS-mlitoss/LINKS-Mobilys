@@ -1,0 +1,23 @@
+node_modules
+
+build
+dist
+
+# Log & file error
+npm-debug.log
+yarn-error.log
+*.log
+
+.env
+.env.local
+.dockerignore
+docker-compose.yml
+Dockerfile
+
+.git
+.gitignore
+
+*.md
+
+.vscode
+.idea

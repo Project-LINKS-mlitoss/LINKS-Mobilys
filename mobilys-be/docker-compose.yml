@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+    mobilys_be:
+        build: .
+        container_name: mobilys_be
+        volumes:
+            - .:/app
+        env_file:
+            - .env
+        ports:
+            - "8000:8000"
+        networks:
+            - app_net
+
+    db:
+        build:
+            context: .
+            dockerfile: Dockerfile.db
+        container_name: mobilys_db
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: mobilys
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: admin
+        command:
+            - "postgres"
+            - "-c"
+            - "shared_preload_libraries=pg_stat_statements,pg_cron"
+            - "-c"
+            - "pg_stat_statements.track=all"
+            - "-c"
+            - "log_min_duration_statement=1000"
+            - "-c"
+            - "pg_stat_statements.max=5000"
+            - "-c"
+            - "cron.database_name=mobilys"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        networks:
+            - app_net
+
+volumes:
+    postgres_data:
+
+networks:
+    app_net:
+        external: true

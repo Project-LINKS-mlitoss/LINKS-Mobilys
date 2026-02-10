@@ -1,0 +1,14 @@
+# Python cache
+__pycache__/
+
+# Local OTP router config
+router_configs/
+
+# Optional: ignore GTFS output or Graphs
+graphs/*/
+!graphs/.gitkeep
+
+# Bytecode
+*.pyc
+
+router_map.json

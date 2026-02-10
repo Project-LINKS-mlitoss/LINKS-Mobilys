@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  mobilys_be:
+    build: ..
+    container_name: mobilys_be
+    ports:
+      - "8000:8000"
+    command: gunicorn django_project.wsgi:application --bind 0.0.0.0:8000

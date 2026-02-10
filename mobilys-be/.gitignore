@@ -1,0 +1,27 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Django local database
+*.sqlite3
+db.sqlite3
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Virtual environments (optional if using Docker only)
+venv/
+.venv/
+ENV/
+env/
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# Type checker & test cache
+.mypy_cache/
+.pytest_cache/
+cache/

@@ -1,0 +1,22 @@
+FROM python:3.11-slim-bookworm
+
+WORKDIR /app
+ENV PYTHONPATH="/usr/lib/python3/dist-packages:${PYTHONPATH}"
+
+# Install Java 11 (Temurin), Docker CLI, and basic tools
+RUN apt-get update && \
+    apt-get install -y wget gnupg2 curl gcc g++ libosmium2-dev libprotobuf-dev zlib1g-dev python3-pyosmium make docker.io && \
+    wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptium.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb bookworm main" > /etc/apt/sources.list.d/adoptium.list && \
+    apt-get update && \
+    apt-get install -y temurin-11-jre && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Python deps
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy app code
+COPY . .
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "4"]

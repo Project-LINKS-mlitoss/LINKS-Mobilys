@@ -19,7 +19,7 @@
 本システムの詳細については[技術検証レポート](https://www.mlit.go.jp/plateau/file/libraries/doc/plateau_tech_doc_0110_ver01.pdf)を参照してください。
 
 ## 3. 利用手順 
-本システムの構築手順及び利用手順については[利用チュートリアル](https://r5-plateau-acn.github.io/SolarPotential/)を参照してください。
+本システムの[構築手順](./doc/devMan.md)及び利用手順については[利用チュートリアル](https://r5-plateau-acn.github.io/SolarPotential/)を参照してください。
 
 ## 4. システム概要 
 ### 【GTFSの分析・可視化】

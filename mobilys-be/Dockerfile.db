@@ -1,0 +1,9 @@
+FROM postgis/postgis:15-3.3
+
+# Install pgRouting
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        postgresql-15-cron \
+        postgresql-15-pgrouting \
+        postgresql-15-pgrouting-scripts \
+    && rm -rf /var/lib/apt/lists/*
