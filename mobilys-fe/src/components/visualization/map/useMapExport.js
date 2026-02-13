@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useCallback, useMemo, useState } from "react";
 import html2canvas from "html2canvas";
 

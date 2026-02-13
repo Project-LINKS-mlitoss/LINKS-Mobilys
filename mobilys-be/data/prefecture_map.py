@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 PREFECTURE_MAP = {
     "01": "北海道",
     "02": "青森県",

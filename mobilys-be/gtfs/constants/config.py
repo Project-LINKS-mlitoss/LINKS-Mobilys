@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 """GTFS app configuration constants.
 
 All configuration values, thresholds, and limits should be defined here

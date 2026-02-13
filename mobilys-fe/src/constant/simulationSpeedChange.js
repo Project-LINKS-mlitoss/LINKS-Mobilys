@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 export const SPEED_CHANGE_ALL_ID = "";
 
 export const SPEED_CHANGE_UI = {

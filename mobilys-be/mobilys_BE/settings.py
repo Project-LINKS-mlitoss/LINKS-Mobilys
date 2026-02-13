@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 """
 Django settings for mobilys_BE project.
 
@@ -164,21 +166,11 @@ REST_FRAMEWORK = {
     'URL_FORMAT_OVERRIDE': 'drf_format',
 }
 
-MLIT_API_KEY = env('MLIT_API_KEY', default='C6h1zUCPfgw4QEq~RRTCqrXnKFAFLgye')
+MLIT_API_KEY = env('MLIT_API_KEY')
 MLIT_API_URL = env('MLIT_API_URL', default='https://data-platform.mlit.go.jp/api/v1/')
 MLIT_API_TIMEOUT = env('MLIT_API_TIMEOUT', default=10)
-ESTAT_API_KEY = env('ESTAT_API_KEY', default='1dbfe83ca140c87b6373a1e8a65b7dcf97fa41be')
+ESTAT_API_KEY = env('ESTAT_API_KEY')
 ESTAT_API_URL = env('ESTAT_API_URL', default='https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData')
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.office365.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'muhammad.fadlil@tk.pacific.co.jp'      # ganti dengan email kamu
-# EMAIL_HOST_PASSWORD = 'password'         # ganti dengan password email kamu (atau app password jika 2FA)
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'muhammad.fadlil@tk.pacific.co.jp'
-
-
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useMemo } from "react";
 import { Marker, Popup, Pane } from "react-leaflet";
 import Button from "@mui/material/Button";

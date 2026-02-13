@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 export const CO2_REDUCTION_ALL_ID = "__ALL__";
 
 export const CO2_REDUCTION_UI = {

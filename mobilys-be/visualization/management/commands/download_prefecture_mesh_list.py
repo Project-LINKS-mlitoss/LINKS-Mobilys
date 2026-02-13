@@ -1,5 +1,5 @@
-
-
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 import os
 import requests
 from pathlib import Path

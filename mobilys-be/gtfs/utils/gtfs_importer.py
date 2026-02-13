@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 import zipfile
 import io
 import csv
@@ -466,7 +468,6 @@ class GTFSImporter:
                  
 
         # Stop early ONLY for critical errors from core files
-        print(critical_errors, warning_errors, "about to raise")
         if critical_errors:
             raise GTFSImportError(critical_errors)
         

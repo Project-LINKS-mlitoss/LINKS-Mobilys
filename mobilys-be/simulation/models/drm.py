@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from django.contrib.gis.db import models as gis_models
 from django.db import models
 

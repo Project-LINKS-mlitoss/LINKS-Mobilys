@@ -1,4 +1,5 @@
-
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from django.test import SimpleTestCase
 import json
 from simulation.services.benefit_calculations_service import compute_benefits_from_payload

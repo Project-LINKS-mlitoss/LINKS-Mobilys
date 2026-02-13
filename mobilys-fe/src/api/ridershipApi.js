@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { get, getBlob, post, del } from "./middleware";
 
 const BASE = "/gtfs/data/ridership";

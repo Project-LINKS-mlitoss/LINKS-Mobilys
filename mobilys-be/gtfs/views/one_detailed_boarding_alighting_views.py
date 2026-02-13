@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 """
 API view for converting OneDetailed (ridership detail) data to BoardingAlighting data.
 """

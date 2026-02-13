@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // components/gtfs/ImportDetailStopGroupTab.jsx
 import React, {
   useState,
@@ -163,7 +165,7 @@ function StopGroupTab({
   const [groupTypeCommitted, setGroupTypeCommitted] = useState(stopGroupingMethod);
   const [groupTypeDraft, setGroupTypeDraft] = useState(stopGroupingMethod);
   const [groups, setGroups] = useState([]);
-  
+
   const originalCommittedRef = useRef([]);
   const originalDraftRef = useRef([]);
 
@@ -199,8 +201,8 @@ function StopGroupTab({
   useEffect(() => {
     if (currentGroups.length > 0 || groups.length === 0) {
       setGroups(currentGroups);
-      
-      // Update baseline sesuai dengan status committed/draft
+
+      // Update baseline according to committed/draft status
       if (groupTypeDraft === groupTypeCommitted) {
         originalCommittedRef.current = JSON.parse(JSON.stringify(currentGroups));
       } else {
@@ -390,8 +392,8 @@ function StopGroupTab({
   const shouldRenderTable = useMemo(() => {
     if (loading || externalLoading) return false;
     if (!Array.isArray(groups) || groups.length === 0) return false;
-    
-    // Cek apakah ada data yang valid untuk current grouping type
+
+    // Check whether there is valid data for the current grouping type
     if (effectiveGroupType === groupingMethodMap.GROUPING_BY_NAME) {
       return groups.some((g) => g && g.stop_name_group);
     } else if (effectiveGroupType === groupingMethodMap.GROUPING_BY_ID) {
@@ -600,7 +602,7 @@ function StopGroupTab({
                                   aria-label={stopGroupUi.actions.editId}
                                   onClick={() => startInlineEdit(key, "id", String(displayId ?? ""))}
                                 >
-                                <span className="material-symbols-outlined outlined">edit</span>
+                                  <span className="material-symbols-outlined outlined">edit</span>
                                 </IconButton>
                               </Box>
                             )}

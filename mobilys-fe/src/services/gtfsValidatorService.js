@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { postValidation, getValidationData } from "../api/gtfsValidatorApi";
 import { ApiError } from "../utils/errors/ApiError.js";
 import { ERRORS as ERROR_MESSAGES } from "../constant";
@@ -111,7 +113,7 @@ export async function triggerGtfsValidation(scenarioId) {
 
 /**
  * Fetch validation data and return normalized result for UI.
- * Feature/component cukup panggil function ini.
+ * Feature/component should just call this function.
  *
  * @param {string} scenarioId
  * @param {object} options - same as getValidationData options

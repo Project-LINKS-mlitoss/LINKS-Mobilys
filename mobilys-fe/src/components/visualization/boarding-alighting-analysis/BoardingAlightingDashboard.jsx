@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import {
   Box,
@@ -72,7 +74,6 @@ function BoardingAlightingDashboard({
 
       const getOn = Number(row.count_geton ?? 0) || 0;
       const getOff = Number(row.count_getoff ?? 0) || 0;
-      //const total = getOn + getOff;
       const total = getOn;
 
       if (!dailyMap.has(key)) {

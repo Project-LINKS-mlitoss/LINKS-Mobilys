@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // components/gtfs/scenario/ScenarioFeedInfoForm.jsx
 import { useEffect, useMemo, useState } from "react";
 import {

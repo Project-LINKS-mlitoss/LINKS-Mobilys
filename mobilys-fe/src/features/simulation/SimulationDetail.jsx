@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/pages/simulation/SimulationDetail.jsx
 import React, { useState } from "react";
 import { Box, Typography, Tabs, Tab, Paper, Button } from "@mui/material";

@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import {
   CircleMarker,
@@ -31,22 +33,16 @@ export default function ODLeafletMap({
   currentStopOptions,
 
   selectedVisualization,
-
-  // vis=0
   points,
   radiusFor,
   oDUsageDistributionSelectedPoint,
   oDUsageDistributionSelectedMode,
-
-  // vis=1
   lastFirstPoints,
   oDLastFirstStopData,
   oDLastFirstStopSelectedPoint,
   setODLastFirstStopSelectedPoint,
   oDLastFirstStopSelectedMode,
   lastFirstMarkerColor,
-
-  // vis=2
   filteredBusStopLines,
   busLineWeight,
   busStopLines,

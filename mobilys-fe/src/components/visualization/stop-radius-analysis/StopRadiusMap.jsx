@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useState, useMemo, useRef, useEffect } from "react";
 import { Box, TextField, Autocomplete } from "@mui/material";
 import {
@@ -76,28 +78,6 @@ function FitToRadius({ featureCollection, rerenderKey }) {
   }, [featureCollection, rerenderKey, map]);
   return null;
 }
-
-// React wrapper that creates a real Leaflet attribution control
-// function AttributionControlSync({ html }) {
-//   const map = useMap();
-
-//   useEffect(() => {
-//     if (!map) return;
-
-//     const control = L.control.attribution({
-//       position: "bottomright",
-//       prefix: false,
-//     });
-//     control.addAttribution(html);
-//     control.addTo(map);
-
-//     return () => {
-//       map.removeControl(control);
-//     };
-//   }, [map, html]);
-
-//   return null;
-// }
 
 export default function StopRadiusMap({
   containerWidth = 0,
@@ -189,9 +169,6 @@ export default function StopRadiusMap({
   };
   const tileUrl = TILE_URLS[selectedTile] || TILE_URLS.osm;
   const tileAttr = TILE_ATTRS[selectedTile] || TILE_ATTRS.osm;
-
-  // Example: Leaflet | © GSI
-  // const activeAttributionHtml = `Leaflet | `;
 
   const [initialCenter, setInitialCenter] = useState([
     35.681236, 139.767125,
@@ -501,7 +478,7 @@ export default function StopRadiusMap({
         zoom={13}
         scrollWheelZoom
         style={{ width: "100%", height: "100%" }}
-        attributionControl={true} // we'll attach our own L.control.attribution
+        attributionControl={true}
         whenCreated={(map) => {
           mapRef.current = map;
           setTimeout(() => map.invalidateSize(false), 0);
@@ -536,9 +513,6 @@ export default function StopRadiusMap({
             crossOrigin="anonymous"
           />
         )}
-
-        {/* Our Leaflet attribution control (looks exactly like the CSS one) */}
-        {/* <AttributionControlSync html={activeAttributionHtml} /> */}
 
         <MapResizer containerWidth={containerWidth} />
 

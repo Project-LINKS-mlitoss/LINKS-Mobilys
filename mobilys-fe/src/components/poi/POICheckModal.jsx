@@ -1,5 +1,6 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/poi/POICheckModal.jsx
-import { useMemo } from "react";
 import {
 	Dialog,
 	DialogTitle,
@@ -54,7 +55,7 @@ function Ellipsis({ title, className, children }) {
  * - checkData: { total_files, total_valid_rows, batches:[{...}], checked_at }
  * - remarksByFile: { [fileName]: string }
  * - onChangeRemark(file, value)
- * - onCommit()   // langsung POST
+ * - onCommit()   // direct POST
  * - committing: boolean
  */
 export default function POICheckModal({
@@ -67,10 +68,6 @@ export default function POICheckModal({
 	committing = false,
 }) {
 	const batches = checkData?.batches || [];
-	const canCommitAll = useMemo(
-		() => batches.length > 0 && batches.every((b) => b.can_commit === true),
-		[batches]
-	);
 
 	const REMARK_MAX = 300;
 
@@ -89,16 +86,7 @@ export default function POICheckModal({
 
 				{batches.map((b, idx) => {
 					const invalidCount = b?.invalid_rows?.length || 0;
-					const dupeInFile = b?.stats?.duplicate_in_file ?? 0;
-					const dupeInDb = b?.stats?.duplicate_in_db ?? 0;
-					const hasWarn =
-						invalidCount > 0 ||
-						b?.file_name_taken ||
-						dupeInFile > 0 ||
-						dupeInDb > 0;
-
 					const remark = remarksByFile?.[b.file] ?? "";
-					const remarkChars = remark.length;
 
 					/* shared table sx: fixed layout + widths + uniform row height */
 					const tableSx = {
@@ -117,7 +105,7 @@ export default function POICheckModal({
 							key={`${b.file}-${idx}`}
 							variant='outlined'
 							sx={{ mb: 2, p: 1.5, borderRadius: 2 }}>
-							{/* Header (sesuai guideline) */}
+							{/* Header (according to guideline) */}
 							<Stack
 								direction='row'
 								alignItems='center'
@@ -325,7 +313,6 @@ export default function POICheckModal({
 				<Button
 					variant='contained'
 					onClick={onCommit}
-				// disabled={!canCommitAll || committing}
 				>
 					{BUTTONS.common.import}
 				</Button>

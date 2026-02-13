@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 # Configuration constants for number of buses running visualization
 EDGE_OFFSET_M = 5
 EDGE_OFFSET_SIDE = "left"

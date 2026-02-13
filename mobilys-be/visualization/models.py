@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 import uuid
 from django.contrib.gis.db import models
 from django.contrib.auth import get_user_model

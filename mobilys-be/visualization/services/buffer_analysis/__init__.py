@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from visualization.services.buffer_analysis.buffer_service import (
     get_stops_within_radius,
     get_stops_within_radius_with_query,

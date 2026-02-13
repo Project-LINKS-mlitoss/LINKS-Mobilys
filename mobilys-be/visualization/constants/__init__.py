@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from visualization.constants.values import (
     DATE_FORMAT,
     TIME_FORMAT,

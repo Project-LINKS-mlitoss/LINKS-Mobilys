@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/FileUploader.jsx
 import { useState, useRef } from "react";
 import { Box, Typography } from "@mui/material";

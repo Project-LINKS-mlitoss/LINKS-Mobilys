@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Box, Paper } from "@mui/material";
 import StopRadiusPopulationGraph from "./graph/StopRadiusPopulationGraph";
 import StopRadiusPOIGraph from "./graph/StopRadiusPOIGraph";

@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from visualization.services.stop_radius_analysis.stop_radius_analysis_service import (
     aggregate_population_rows,
     build_stop_group_buffer_payload,

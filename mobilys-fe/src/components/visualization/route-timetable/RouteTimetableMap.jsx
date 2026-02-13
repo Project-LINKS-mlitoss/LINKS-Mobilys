@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // components/visualization/route_timetable/RouteTimetableMap.jsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Box, Autocomplete, TextField, IconButton } from "@mui/material";

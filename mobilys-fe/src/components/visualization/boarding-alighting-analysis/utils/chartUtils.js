@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 /**
  * Strips sequence number suffix from stop labels
  * Example: "Station A (2)" => "Station A"

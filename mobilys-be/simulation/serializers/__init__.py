@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from simulation.serializers.base import BaseRequestSerializer, BaseResponseSerializer, PaginationRequestSerializer
 from simulation.serializers.request import (
     SimulationWriteRequestSerializer,

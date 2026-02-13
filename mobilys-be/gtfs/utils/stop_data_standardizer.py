@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from ..models import Stops, Scenario, StopIdKeyword, StopIdKeywordMap, StopNameKeywords, StopNameKeywordMap
 from django.db import transaction
 from .stop_data_utils import StopDataUtils

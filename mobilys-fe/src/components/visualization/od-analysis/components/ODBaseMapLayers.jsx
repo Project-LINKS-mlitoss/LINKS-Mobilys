@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import { Marker, Polyline } from "react-leaflet";
 import { BLANK_DIVICON } from "../../buffer-analysis/BufferAnalysisMap";

@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 # visualization/views/poi_views.py
 from typing import List, Tuple
 import csv

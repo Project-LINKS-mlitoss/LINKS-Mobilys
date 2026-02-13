@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/features/simulation/CO2ReductionTab.jsx
 import React from "react";
 import {

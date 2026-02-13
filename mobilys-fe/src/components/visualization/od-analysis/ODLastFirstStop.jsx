@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import {
   Box,
@@ -93,11 +95,6 @@ export default function ODLastFirstStop({
   }, [parentProps.child_features]);
 
   const hasData = !!parentStopName || childRows.length > 0;
-  // const parentTitle = mode === "first_stop" ? "起点" : "終点";
-  // const parentCol = mode === "first_stop" ? "乗車人数" : "降車人数";
-  // const childTitle = mode === "first_stop" ? "終点" : "起点";
-  // const childCol = mode === "first_stop" ? "降車人数" : "乗車人数";
-  // const panelTitle = `起点・終点一覧（${parentTitle}）`;
   const parentTitle =
     mode === "first_stop"
       ? VISUALIZATION.odAnalysis.components.common.labels.firstStop
@@ -129,7 +126,6 @@ export default function ODLastFirstStop({
     ];
     const csv = rows.map((r) => r.map(esc).join(",")).join("\r\n");
     const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
-    // const title = `${parentTitle}・${childTitle}一覧`;
     const filename = buildFilename(scenarioName, screenName, "graph", panelTitle, "csv");
     saveAs(blob, filename);
   };
@@ -300,7 +296,7 @@ export default function ODLastFirstStop({
                     </TableHead>
                     <TableBody>
                       <TableRow hover>
-                        <TableCell sx={nameCellSx}>{parentStopName || "—"}</TableCell>
+                        <TableCell sx={nameCellSx}>{parentStopName || "-"}</TableCell>
                         <TableCell sx={valueCellSx}>{formatNumber(parentTotal)}</TableCell>
                       </TableRow>
                     </TableBody>

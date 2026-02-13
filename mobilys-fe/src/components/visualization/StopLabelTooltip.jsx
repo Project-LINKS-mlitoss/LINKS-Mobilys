@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/visualization/StopLabelTooltip.jsx
 import React, { useEffect } from "react";
 import { Tooltip } from "react-leaflet";

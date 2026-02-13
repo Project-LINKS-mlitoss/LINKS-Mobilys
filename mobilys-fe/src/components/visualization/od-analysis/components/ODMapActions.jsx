@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { IconButton, Tooltip as MuiTooltip } from "@mui/material";
 import { VISUALIZATION } from "@/strings";
 

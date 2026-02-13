@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from simulation.serializers.response.simulation_response import (
     SimulationResponseSerializer,
     SimulationValidationResultSerializer,

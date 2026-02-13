@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useState } from "react";
 import { Box, Tabs, Tab, Typography, Paper } from "@mui/material";
 import { LABELS } from "../../../strings";

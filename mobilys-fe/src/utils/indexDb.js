@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { get, set, del } from "idb-keyval";
 
 export function makeKey({ prefix = "joukou", scenarioId, tag } = {}) {
@@ -50,13 +52,12 @@ export function deleteDB(dbName) {
 export async function clearAllIndexedDB() {
     try {
         if (typeof indexedDB.databases === "function") {
-            console.log("Clearing all IndexedDB databases");
             const dbs = await indexedDB.databases();
             await Promise.all(
                 (dbs || [])
                     .map((db) => db && db.name)
                     .filter(Boolean)
-                    .map((name) => deleteDB(name))
+                    .map((name) => deleteDB(name)),
             );
         } else {
             const knownDbNames = ["keyval", "od", "joukou"];

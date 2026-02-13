@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useEffect, useMemo, useRef } from "react";
 import { GeoJSON, Pane, useMap } from "react-leaflet";
 import { getGeoJsonCenter } from "./mapCalcUtils";

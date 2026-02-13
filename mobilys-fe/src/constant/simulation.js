@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 export const SIMULATION_CSV_TEMPLATE = `date,agency_id,route_id,trip_id,stop_id,stop_sequence,count_geton,count_getoff
 20240401,Agency A,Route A,Trip A,Stop 1,1,5,0
 20240401,Agency A,Route A,Trip A,Stop 2,12,5,0

@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 """
 Response serializers for Role.
 Serializers should NOT contain database queries.

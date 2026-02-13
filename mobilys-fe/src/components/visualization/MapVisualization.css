@@ -269,11 +269,3 @@
   display: none !important;
 }
 
-/* Boarding / alighting map: hide Leaflet default UI */
-/* moe commented this out, anusha san will later update this */
-/* .leaflet-control-zoom,
-.leaflet-control-attribution {
-  display: none !important;
-} */
-
-

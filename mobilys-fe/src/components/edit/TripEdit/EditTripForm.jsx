@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   Box,

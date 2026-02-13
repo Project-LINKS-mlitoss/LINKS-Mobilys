@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 /**
  * Centralized user feedback messages (success/info/warning).
  *

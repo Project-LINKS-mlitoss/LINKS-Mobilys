@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { GTFSFeed } from "../models/GTFSFeed";
 import { getGTFSFeedListApi, getGTFSFeedDetailApi } from "../api/gtfsApi";
 import { ApiError } from "../utils/errors/ApiError.js";

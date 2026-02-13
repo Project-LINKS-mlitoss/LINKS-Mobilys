@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 import unicodedata
 from typing import Any, Dict, List, Optional, Union
 
@@ -108,7 +110,6 @@ def build_segment_volume_changes(
                 continue
             delta_riders_by_route[rid] = to_float_or_zero((rec or {}).get("delta_riders_per_day"))
             delta_trips_by_route[rid] = to_float_or_zero((rec or {}).get("delta_trips_per_day"))
-            print(f"Route {rid}: delta_riders={delta_riders_by_route[rid]}, delta_trips={delta_trips_by_route[rid]}")
 
     def _share_for_route(rid: Any) -> float:
         if isinstance(automobile_share, dict):

@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useState, useEffect } from "react";
 import {
   Dialog,
@@ -171,7 +173,6 @@ const StopDeleteConfirmModal = ({
           color="primary"
           onClick={onClose}
           disabled={loading || submitting}
-        //sx={{ minWidth: 100 }}
         >
           {BUTTONS.common.cancel}
         </Button>
@@ -191,7 +192,6 @@ const StopDeleteConfirmModal = ({
             }
           }}
           disabled={loading || submitting || Boolean(errorMsg)}
-        //sx={{ minWidth: 100 }}
         >
           {BUTTONS.common.delete}
         </Button>

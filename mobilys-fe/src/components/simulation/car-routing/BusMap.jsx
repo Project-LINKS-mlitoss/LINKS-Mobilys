@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, TileLayer, useMap, Pane } from "react-leaflet";
 import L from "leaflet";

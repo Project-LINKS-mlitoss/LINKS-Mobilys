@@ -1,22 +1,13 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, Typography, Table, TableHead, TableRow, TableCell, TableBody, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { MapContainer, Polyline, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-//import CreateTripFinalConfirmDialog from "./CreateTripFinalConfirmDialog";
 import { MapTileLayer } from "../../MapTileLayer";
 import L from "leaflet";
 import { LABELS, BUTTONS } from "../../../strings";
 import { MESSAGES } from "../../../constant";
-
-/* --- (optional) two-line field label (JP + EN) --- */
-const FieldLabel = ({ jp, en, required = false }) => (
-  <Box display="flex" alignItems="baseline" gap={0.5}>
-    <Typography fontSize={17} color="text.secondary">{jp}</Typography>
-    <Typography fontSize={14} color="text.secondary">
-      {en}{required ? " *" : ""}
-    </Typography>
-  </Box>
-);
 
 const blueStopDivIcon = L.divIcon({
   className: "",
@@ -63,7 +54,6 @@ const asHHMMSS = (t) => {
 };
 
 const CreateTripConfirmDialog = ({ open, onClose, tripInfo, stopSequence, reverseSequence, onConfirm, shapeData, loadingTripActions }) => {
-  const [showFinalConfirm, setShowFinalConfirm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const displayedStops = reverseSequence ? [...stopSequence].reverse() : stopSequence;
 
@@ -149,7 +139,6 @@ const CreateTripConfirmDialog = ({ open, onClose, tripInfo, stopSequence, revers
                   <TableCell><TwoLineHeader jp={LABELS.trip.stopSequence} en={LABELS.gtfs.stopSequence} /></TableCell>
                   <TableCell><TwoLineHeader jp={LABELS.stop.poleId} en={LABELS.gtfs.stopId} /></TableCell>
                   <TableCell><TwoLineHeader jp={LABELS.stop.poleName} en={LABELS.gtfs.stopName} /></TableCell>
-                  {/* <TableCell><TwoLineHeader jp="標柱ID" en="stop_id" /></TableCell> */}
                   <TableCell><TwoLineHeader jp={LABELS.trip.arrivalTime} en={LABELS.gtfs.arrivalTime} /></TableCell>
                   <TableCell><TwoLineHeader jp={LABELS.trip.departureTime} en={LABELS.gtfs.departureTime} /></TableCell>
                 </TableRow>
@@ -160,7 +149,6 @@ const CreateTripConfirmDialog = ({ open, onClose, tripInfo, stopSequence, revers
                     <TableCell>{i + 1}</TableCell>
                     <TableCell>{s.stop_id}</TableCell>
                     <TableCell>{s.stop_name}</TableCell>
-                    {/* <TableCell>{s.stop_id}</TableCell> */}
                     <TableCell>{asHHMMSS(s.arrival_time)}</TableCell>
                     <TableCell>{asHHMMSS(s.departure_time)}</TableCell>
                   </TableRow>
@@ -195,22 +183,6 @@ const CreateTripConfirmDialog = ({ open, onClose, tripInfo, stopSequence, revers
           </Button>
         </DialogActions>
       </Dialog>
-
-      {/* (kept as-is, commented out) */}
-      {/* <CreateTripFinalConfirmDialog
-        open={showFinalConfirm}
-        onClose={() => {
-          if (!loadingTripActions) {
-            setShowFinalConfirm(false);
-          }
-        }}
-        tripInfo={tripInfo}
-        onConfirm={async () => {
-          await onConfirm(); // Waits for save to complete
-          setShowFinalConfirm(false); // Closes only after save finishes
-        }}
-        loadingTripActions={loadingTripActions}
-      /> */}
     </>
   );
 };

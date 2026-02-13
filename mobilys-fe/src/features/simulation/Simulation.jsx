@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 
 
 import React, { useMemo, useState } from "react";
@@ -283,7 +285,7 @@ function Simulation() {
         </Alert>
       )}
 
-      {/* === Table styling mengikuti ScenarioTable === */}
+      {/* === Table styling follows ScenarioTable === */}
       <Paper sx={{ width: "100%", overflowX: "auto", mx: "auto" }}>
         <Table>
           <TableHead>
@@ -398,7 +400,7 @@ function Simulation() {
                     <TableCell>{displayOriginalName(s)}</TableCell>
                     <TableCell>{displayDuplicatedName(s)}</TableCell>
 
-                    {/* Format tanggal ngikutin ScenarioTable */}
+                    {/* Date format follows ScenarioTable */}
                     <TableCell>
                       {formatJPDateTime(s.created_at)}
                     </TableCell>

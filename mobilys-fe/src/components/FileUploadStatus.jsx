@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Box, Typography, Button } from "@mui/material";
 import uploadProgress from "../assets/photos/upload-progress.png";
 import uploadError from "../assets/photos/upload-failed.png";

@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import L from "leaflet";
 
 export const DEFAULT_CENTER_LAT_LNG = [35.681236, 139.767125];

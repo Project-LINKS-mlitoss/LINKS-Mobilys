@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/features/edit/EasyTripFrequencyPage.jsx
 import React from "react";
 import {

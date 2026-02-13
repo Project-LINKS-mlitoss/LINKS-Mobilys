@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from simulation.serializers.request.ridership_change_request import (
     RCDefaultsQuerySerializer,
     RCCalcInputSerializer,

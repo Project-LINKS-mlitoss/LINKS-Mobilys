@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../features/Home";
 import Login from "../features/Login";

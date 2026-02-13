@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from simulation.services.simulation_init.analysis import analyze_ic_csv_against_simulation
 from simulation.services.simulation_init.csv_utils import (
     CSVTemplateError,

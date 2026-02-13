@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 const ensureArray = (x) => (Array.isArray(x) ? x : x ? [x] : []);
 
 export function toServiceId(service) {

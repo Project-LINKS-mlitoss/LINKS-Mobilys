@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import { getUserScenarios } from "../../../services/scenarioService";
 import { cloneGTFSDataImport } from "../../../services/importService";

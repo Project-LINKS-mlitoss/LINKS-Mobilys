@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // MapLayerButton.jsx  — ultra-compact
 import React from "react";
 import { Box, IconButton, Popover, Typography } from "@mui/material";

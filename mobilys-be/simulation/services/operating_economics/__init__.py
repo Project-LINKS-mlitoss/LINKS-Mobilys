@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from simulation.services.operating_economics.service import OperatingEconomicsService
 from simulation.services.operating_economics.calculator import (
     compute_route_length_km_simple_mean_by_route_keyword,

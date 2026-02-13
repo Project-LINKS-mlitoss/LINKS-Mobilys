@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // This file contains utility functions for text manipulation
 // such as truncating text to a specified length and formatting text to be more readable.
 

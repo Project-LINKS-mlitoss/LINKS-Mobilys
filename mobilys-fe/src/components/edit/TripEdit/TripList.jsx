@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/edit/TripEdit/TripList.jsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {

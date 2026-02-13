@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // components/visualization/route_timetable/RouteTimetableFilterPanel.jsx
 import React from "react";
 import {

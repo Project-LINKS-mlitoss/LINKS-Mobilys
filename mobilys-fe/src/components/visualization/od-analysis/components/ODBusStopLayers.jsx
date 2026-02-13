@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import { CircleMarker, Marker, Polyline } from "react-leaflet";
 import { red } from "@mui/material/colors";

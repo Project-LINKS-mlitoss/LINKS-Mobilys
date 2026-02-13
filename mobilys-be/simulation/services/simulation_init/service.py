@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 import logging
 from typing import Any, Dict, List, Tuple
 
@@ -149,7 +151,6 @@ class SimulationInitService:
                     bus_buffer_m=bus_buffer_m,
                     csv_penalty_factor=csv_penalty_factor,
                 )
-                print("simulation_3_result:", simulation_3_result)
 
                 simulation_4_result = build_segment_volume_changes(
                     sim3_results=simulation_3_result,

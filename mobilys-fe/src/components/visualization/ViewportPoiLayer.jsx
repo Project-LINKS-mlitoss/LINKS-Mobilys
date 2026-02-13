@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useEffect, useMemo, useState } from "react";
 import { useMap, Marker, Popup, LayerGroup } from "react-leaflet";
 // Reuse *exactly* the same icon pipeline as AI

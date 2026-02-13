@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from uuid import UUID
 from datetime import datetime
 from collections import defaultdict, Counter

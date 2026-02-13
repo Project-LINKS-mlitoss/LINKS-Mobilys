@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 # simulation/tests/test_operating_economics_calc.py
 from django.test import SimpleTestCase
 import json

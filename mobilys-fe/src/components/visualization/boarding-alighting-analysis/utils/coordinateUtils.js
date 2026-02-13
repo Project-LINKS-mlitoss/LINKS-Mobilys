@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 /**
  * Convert coordinate array [lng, lat] to Leaflet format [lat, lng]
  * @param {Array} line - Array of [lng, lat] coordinates

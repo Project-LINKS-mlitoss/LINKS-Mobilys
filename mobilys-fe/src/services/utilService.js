@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { getCalendarApi, previewShapeApi } from '../api/utilApi';
 import { ApiError } from "../utils/errors/ApiError.js";
 import { ERRORS as ERROR_MESSAGES } from "../constant";

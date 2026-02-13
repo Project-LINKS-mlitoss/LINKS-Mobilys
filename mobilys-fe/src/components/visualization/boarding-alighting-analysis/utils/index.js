@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 export { parseYyyymmdd, formatDateLabel, formatDateYMD } from "./dateUtils";
 export { heatColor } from "./heatmapUtils";
 export {

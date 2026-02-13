@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from rest_framework import viewsets, status
 from django.db.models import Exists, OuterRef
 from rest_framework.permissions import IsAuthenticated

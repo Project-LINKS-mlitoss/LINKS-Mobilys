@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import {
   Box,
   Paper,
@@ -286,7 +288,6 @@ export default function VolumeCarTab(simulationId) {
   }, [d4, selectedRoute]);
 
   const groups = useMemo(() => buildGroups(d4, selectedRoute, selectedPattern), [d4, selectedRoute, selectedPattern]);
-  // const rows = useMemo(() => groups.flatMap((g) => g.rows), [groups]); // Unused
 
   const nested = useMemo(() => {
     const map = new Map();

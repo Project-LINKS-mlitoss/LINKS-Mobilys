@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 class ColorConstants:
     PALETTE = [
         "e74c3c", "2ecc71", "3498db", "9b59b6", "f39c12",

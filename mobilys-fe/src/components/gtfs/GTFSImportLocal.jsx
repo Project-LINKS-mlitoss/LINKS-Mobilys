@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useState, useEffect } from "react";
 import FileUploader from "../FileUploader";
 import { FILE_STATUS } from "../../constant/file.js";
@@ -16,7 +18,6 @@ import { postGTFSDataImportLocal } from "../../services/importService";
 import { getUserScenarios } from "../../services/scenarioService.js";
 import { useSnackbarStore } from "../../state/snackbarStore";
 import InputModal from "../InputModal";
-import GTFSImportDetailErrorModal from "../gtfs/GTFSImportDetailErrorModal.jsx";
 import { GTFS } from "../../strings/domains/gtfs";
 
 function formatBytes(bytes) {
@@ -41,12 +42,12 @@ export default function GTFSImportLocal() {
   const [scenarioOpen, setScenarioOpen] = useState(false);
 
   // Modal error internal (row-level)
-  const [errorModalOpen, setErrorModalOpen] = useState(false);
-  const [errorModalRows, setErrorModalRows] = useState([]);
-  const [errorModalMessage, setErrorModalMessage] = useState("");
-  const [errorModalTimestamp, setErrorModalTimestamp] = useState(null); // Add timestamp state
+  const [_errorModalOpen, setErrorModalOpen] = useState(false);
+  const [_errorModalRows, setErrorModalRows] = useState([]);
+  const [_errorModalMessage, setErrorModalMessage] = useState("");
+  const [_errorModalTimestamp, setErrorModalTimestamp] = useState(null); // Add timestamp state
 
-  // Validasi nama skenario
+  // Validate scenario names
   const [scenarioNamesLoading, setScenarioNamesLoading] = useState(false);
   const [existingNames, setExistingNames] = useState(() => new Set());
 
@@ -82,7 +83,7 @@ export default function GTFSImportLocal() {
           );
           setExistingNames(setLower);
         }
-      } catch (error){
+      } catch {
         if (!cancelled) setExistingNames(new Set());
       } finally {
         if (!cancelled) setScenarioNamesLoading(false);
@@ -124,7 +125,7 @@ export default function GTFSImportLocal() {
     if (!files.length) return;
 
     try {
-      // Step 1: Langsung mulai import tanpa validasi awal (fire and forget)
+      // Step 1: Start import immediately without initial validation (fire and forget)
       postGTFSDataImportLocal(files[0], { scenarioName }).catch((error) => {
         // Only handle immediate errors (validation, network, etc)
         const resp = error?.response?.data || {};
@@ -260,19 +261,6 @@ export default function GTFSImportLocal() {
         validate={validateScenarioName}
         confirmDisabled={scenarioNamesLoading}
       />
-
-      {/* <GTFSImportDetailErrorModal
-        open={errorModalOpen}
-        onClose={() => {
-          setErrorModalOpen(false);
-          setErrorModalRows([]);
-          setErrorModalMessage("");
-          setErrorModalTimestamp(null); // Reset timestamp
-        }}
-        errors={errorModalRows}
-        message={errorModalMessage}
-        timestamp={errorModalTimestamp} // Pass timestamp
-      /> */}
     </Box>
   );
 }

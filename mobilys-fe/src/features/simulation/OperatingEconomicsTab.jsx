@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import { Alert, Box, CircularProgress, Snackbar, Typography } from "@mui/material";
 import OperatingEconomics from "../../components/simulation/operating-economics/OperatingEconomics";

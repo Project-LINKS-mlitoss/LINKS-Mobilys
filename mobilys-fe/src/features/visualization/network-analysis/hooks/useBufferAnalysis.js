@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { useSnackbarStore } from "../../../../state/snackbarStore";

@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from itertools import groupby
 from collections import defaultdict, Counter
 from shapely.geometry import LineString, MultiLineString
@@ -426,7 +428,7 @@ def compute_route_group_total_graph_optimized(scenario, valid_tids, trip_map, gr
     start_hr = start_time.hour if start_time else 0
     end_hr = end_time.hour if end_time else 23
 
-    # Database aggregation untuk extract hour
+    # Database aggregation to extract the hour
     trip_hours_qs = StopTimes.objects.filter(
         scenario=scenario,
         trip_id__in=valid_tids

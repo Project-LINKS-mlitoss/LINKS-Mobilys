@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 # gtfs/services/trip_frequency_service.py
 from collections import defaultdict, Counter
 from datetime import datetime, time, timedelta

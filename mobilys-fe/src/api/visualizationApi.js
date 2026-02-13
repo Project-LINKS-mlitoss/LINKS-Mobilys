@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { get, post } from "./middleware";
 import { useAuthStore } from "../state/authStore";
 

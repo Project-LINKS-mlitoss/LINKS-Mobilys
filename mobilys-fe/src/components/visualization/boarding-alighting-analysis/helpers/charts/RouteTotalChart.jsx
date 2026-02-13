@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useCallback, useMemo, useState } from "react";
 import { Box } from "@mui/material";
 import {

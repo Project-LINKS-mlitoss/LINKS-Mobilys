@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 class BenefitCalculationConstants:
     """
     This class contains constants used in benefit calculations for the simulation.

@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from user.views.project_views import (
     ProjectViewSet,
     assign_users_to_project,

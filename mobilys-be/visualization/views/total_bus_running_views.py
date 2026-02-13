@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from uuid import UUID
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -200,7 +202,7 @@ class TotalBusOnStopDetailAPIView(APIView):
                 status_code=status.HTTP_400_BAD_REQUEST
             )
 
-        # 1) ambil scenario
+        # 1) get scenario
         try:
             scenario = Scenario.objects.get(id=sc_id)
         except Scenario.DoesNotExist:

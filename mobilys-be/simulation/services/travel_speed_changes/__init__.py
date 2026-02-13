@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from simulation.services.travel_speed_changes.calculator import (
     MissingFieldError,
     compute_speed_delta_after_change_for_link,

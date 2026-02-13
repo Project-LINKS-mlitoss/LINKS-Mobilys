@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { fetchMapListData, updateUserMaps } from "../api/userApi";
 import { handleApiCall } from "../utils/errors/handleApiCall";
 import { ERRORS } from "../constant/errorMessages";

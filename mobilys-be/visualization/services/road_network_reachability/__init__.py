@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from visualization.services.road_network_reachability.otp_related_services import (
     build_graph_payload,
     build_prefecture_availability_payload,

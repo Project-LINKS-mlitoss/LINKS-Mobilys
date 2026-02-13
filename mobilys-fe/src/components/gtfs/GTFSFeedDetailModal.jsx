@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/gtfs/GTFSFeedDetailModal.jsx
 import { useEffect, useState, useMemo } from "react";
 import {
@@ -24,7 +26,6 @@ import { postGTFSDataImport, postGTFSDataImportValidationApiService } from "../.
 import { useSnackbarStore } from "../../state/snackbarStore";
 import EmptyState from "../EmptyState";
 import emptyDataImage from "../../assets/photos/empty-data.png";
-import GTFSImportDetailErrorModal from "../gtfs/GTFSImportDetailErrorModal";
 import { getUserScenarios } from "../../services/scenarioService";
 import { GTFS } from "../../strings/domains/gtfs";
 import { UI } from "../../constant/ui";
@@ -44,7 +45,6 @@ export default function GTFSFeedDetailModal({
   const [detail, setDetail] = useState(null);
   const [error, setError] = useState(null);
 
-  // import flow
   const [scenarioOpen, setScenarioOpen] = useState(false);
   const [scenarioTarget, setScenarioTarget] = useState(null);
   const showSnackbar = useSnackbarStore((s) => s.showSnackbar);
@@ -53,10 +53,10 @@ export default function GTFSFeedDetailModal({
   const [validationLoading, setValidationLoading] = useState(false);
 
   // error detail modal (internal row-level)
-  const [errorModalOpen, setErrorModalOpen] = useState(false);
-  const [errorModalRows, setErrorModalRows] = useState([]);
-  const [errorModalMessage, setErrorModalMessage] = useState("");
-  const [errorModalTimestamp, setErrorModalTimestamp] = useState(null);
+  const [_errorModalOpen, setErrorModalOpen] = useState(false);
+  const [_errorModalRows, setErrorModalRows] = useState([]);
+  const [_errorModalMessage, setErrorModalMessage] = useState("");
+  const [_errorModalTimestamp, setErrorModalTimestamp] = useState(null);
 
   // scenario name validation
   const [scenarioNamesLoading, setScenarioNamesLoading] = useState(false);
@@ -347,20 +347,6 @@ export default function GTFSFeedDetailModal({
           validate={validateScenarioName}
           confirmDisabled={scenarioNamesLoading}
         />
-
-        {/* Internal error (row-level) details */}
-        {/* <GTFSImportDetailErrorModal
-          open={errorModalOpen}
-          onClose={() => {
-            setErrorModalOpen(false);
-            setErrorModalRows([]);
-            setErrorModalMessage("");
-            setErrorModalTimestamp(null);
-          }}
-          errors={errorModalRows}
-          message={errorModalMessage}
-          timestamp={errorModalTimestamp}
-        /> */}
       </Dialog>
 
       {/* Validation Loading Backdrop */}

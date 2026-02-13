@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 export const GSI_TILE_URLS = {
   pale: "https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png",
   std: "https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png",

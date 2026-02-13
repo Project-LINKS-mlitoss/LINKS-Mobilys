@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/features/simulation/report/exportSummaryReport.js
 
 let stylesInjected = false;
@@ -209,12 +211,6 @@ const EXPLAIN_JA = {
         meaning: "エリア内の全車両の延べ走行時間を示します。",
         how: "区間ごとの総走行時間を合計します。",
     },
-    // annual_benefits_total: {
-    //     title: "年間便益（千円/年）",
-    //     // meaning: "時間短縮・運行費用変化・事故減少の合計（年換算）です。",
-    //     how: "日次便益の合計を年換算（×365、千円単位）し、年次の事故減少便益を加算します。",
-    // },
-
     benefit_tt: {
         title: "走行時間短縮便益（千円/年）",
         meaning: "現行シナリオと将来シナリオの総走行時間の差に基づく費用便益を年間換算した値です。",
@@ -257,7 +253,6 @@ function explanations(keys) {
 }
 
 /* ---------- data helpers ---------- */
-// exportSummaryReport.js (new)
 function computeCarTotals(data) {
     const routes = data?.car_volume_data?.data?.routes || [];
     let length_m = 0;
@@ -695,17 +690,6 @@ function buildSummaryOnly(
             (() => {
                 const box = el("div", { class: "box" }, []);
 
-            // 年間便益
-            // box.appendChild(
-            //     el(
-            //         "div",
-            //         {
-            //             class: "muted",
-            //             style: "font-weight:700;margin:12px 0 4px;",
-            //         },
-            //         "年間便益"
-            //     )
-            // );
             box.appendChild(
                 tableSummary([
                     {
@@ -723,17 +707,9 @@ function buildSummaryOnly(
                         value: fmtInt(benefitAnnual?.ac),
                         unit: "千円/年",
                     },
-                    // {
-                    //     label: "計",
-                    //     value: fmtInt(benefitAnnual?.total),
-                    //     unit: "千円/年",
-                    // },
                 ])
             );
 
-            // if (includeExplanations) {
-            //     box.appendChild(explanations(["annual_benefits_total"]));
-            // }
             if (includeExplanations) {
                 box.appendChild(explanations(["benefit_tt", "benefit_oc", "benefit_ac"]));
             }

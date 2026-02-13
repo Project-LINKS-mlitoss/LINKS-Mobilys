@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 """
 Core services for Ridership processing
 Handles Excel file upload, parsing, validation, and database storage

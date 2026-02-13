@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 def create_drm_links_raw_sql(*, srid: int) -> str:
     return f"""
     CREATE TABLE IF NOT EXISTS drm_links_raw (

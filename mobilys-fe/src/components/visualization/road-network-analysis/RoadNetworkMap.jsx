@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   MapContainer,
@@ -1187,24 +1189,22 @@ const RoadNetworkMap = ({
           weight={0.2}
           outlineColor="#ccc"
         />
-        {/* <div data-html2canvas-ignore> */}
-          <PopulationAndIsochroneLegend
-            activeKey={activePopulationKey}
-            isoMinutes={legendMinutes}
-            getIsoColor={getIsoLegendColor}
-            isoOpacity={isochroneOpacity}
-            isoCutoffMinutes={
-              visibleItem?.properties?.time
-                ? visibleItem.properties.time / 60
-                : null
-            }
-            openDefault={false}
-            showToggleButton={true}
-            position={{ bottom: 33, right: 100 }}
-            cardWidth={220}
-            zIndex={1100}
-          />
-        {/* </div> */}
+        <PopulationAndIsochroneLegend
+          activeKey={activePopulationKey}
+          isoMinutes={legendMinutes}
+          getIsoColor={getIsoLegendColor}
+          isoOpacity={isochroneOpacity}
+          isoCutoffMinutes={
+            visibleItem?.properties?.time
+              ? visibleItem.properties.time / 60
+              : null
+          }
+          openDefault={false}
+          showToggleButton={true}
+          position={{ bottom: 33, right: 100 }}
+          cardWidth={220}
+          zIndex={1100}
+        />
       </MapContainer>
     </Box>
   );

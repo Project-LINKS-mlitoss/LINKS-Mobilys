@@ -1,4 +1,5 @@
-import React from "react";
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import {
   Box,
   Button,
@@ -114,7 +115,7 @@ export default function GTFSValidationTab({
 
         {errorMsg && <Alert severity="error">{errorMsg}</Alert>}
 
-        {/* EMPTY STATE: belum ada data sama sekali */}
+        {/* EMPTY STATE: no data yet */}
         {!loadingNow && !hasData && !initialLoaded && !errorMsg && (
           <Box
             sx={{
@@ -137,7 +138,7 @@ export default function GTFSValidationTab({
           </Box>
         )}
 
-        {/* DATA STATE: ada report dan tidak sedang loading */}
+        {/* DATA STATE: report available and not loading */}
         {!loadingNow && hasData && (
           <>
             <GTFSValidationSummary

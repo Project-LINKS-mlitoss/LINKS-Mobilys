@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useState, useRef } from "react";
 import { GeoJSON, Marker } from "react-leaflet";
 import L from "leaflet";

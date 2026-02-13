@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Paper, Divider, Typography, Backdrop, CircularProgress } from "@mui/material";

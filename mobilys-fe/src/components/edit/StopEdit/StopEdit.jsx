@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Box, Button } from "@mui/material";
 import { useMemo } from "react";
 import { BUTTONS } from "../../../strings";
@@ -12,7 +14,6 @@ const StopEdit = ({
   setAction,
   onCreateChild,
   onCreate,
-  onEdit,   // masih diterima, tapi untuk tombol Edit di bawah kita langsung pakai setAction agar bisa sisipkan label
   onDelete,
   onFormSubmit,
   groupingMethod,
@@ -24,15 +25,6 @@ const StopEdit = ({
     CREATE: "create",
     CREATE_CHILD: "create_child",
   };
-
-  // map: { [stop_id]: groupObjFrom_stops_groups_by_id }
-  const stopIdToIdGroup = useMemo(() => {
-    const map = {};
-    (stopGroups?.stops_groups_by_id || []).forEach(g => {
-      (g.stops || []).forEach(s => { map[s.stop_id] = g; });
-    });
-    return map;
-  }, [stopGroups]);
 
   return (
     <Box
@@ -63,7 +55,7 @@ const StopEdit = ({
               translations: action.payload.translations || [],
             }
             : {
-              // create mode -> kosongkan semua termasuk 2 label baru
+              // create mode -> clear everything including the two new labels
               parent_stop_id_label: "",
               parent_stop_name_label: "",
               stop_name: "",
@@ -210,7 +202,6 @@ const StopEdit = ({
                   size="small"
                   color="primary"
                   onClick={() => setAction({ type: "delete", payload: stop })}
-                  // or: onClick={() => setAction({ type: actionTypes.DELETE, payload: stop })}
                   aria-label={BUTTONS.common.delete}
                   sx={{
                     minWidth: 40,

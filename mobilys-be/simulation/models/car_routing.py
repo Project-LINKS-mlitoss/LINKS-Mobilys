@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from decimal import Decimal
 
 from django.core.validators import MaxValueValidator, MinValueValidator

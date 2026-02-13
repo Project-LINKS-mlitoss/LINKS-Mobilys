@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/pages/gtfs/GTFSImport.jsx
 import React, { useMemo, useState } from "react";
 import { Typography, Box, Tabs, Tab } from "@mui/material";

@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from decimal import Decimal, ROUND_HALF_UP
 from typing import Any, Dict, List, Optional
 

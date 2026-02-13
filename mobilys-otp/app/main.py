@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.api.routes import router

@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from collections import defaultdict, OrderedDict
 from ..models import Routes, Trips, StopTimes
 from django.utils import timezone

@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import "leaflet/dist/leaflet.css";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";

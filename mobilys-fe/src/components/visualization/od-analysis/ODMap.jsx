@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
 import "../MapVisualization.css";
@@ -67,18 +69,15 @@ const mapBaseItems = [
 
 export default function ODMap({
   selectedVisualization,
-  // vis=0
   oDUsageDistributionData,
   oDUsageDistributionSelectedPoint,
   oDUsageDistributionSelectedMode,
   setODUsageDistributionSelectedMode,
-  // vis=1
   oDLastFirstStopData,
   setODLastFirstStopSelectedPoint,
   oDLastFirstStopSelectedPoint,
   oDLastFirstStopSelectedMode,
   setODLastFirstStopSelectedMode,
-  // vis=2
   oDBusStopData,
   oDBusStopSelectedPoint,
   setODBusStopSelectedPoint,

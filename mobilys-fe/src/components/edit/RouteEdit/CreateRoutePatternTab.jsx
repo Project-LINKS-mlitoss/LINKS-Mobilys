@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useState, useMemo } from "react";
 import {
   Box,
@@ -32,7 +34,6 @@ import DeleteRouteConfirmDialog from "./DeleteRouteConfirmDialog";
 
 import { directionMap, formatRouteType } from "../../../constant/gtfs";
 import { EqualColGroup, cellTextSx } from "../../TableCols";
-import { EllipsizedCell } from "../../gtfs/ImportDetailRouteGroupTab";
 import { formatSectionLabel } from "../../../utils/text";
 import { getDetailTripFrequency } from "../../../services/tripService";
 import { LABELS, BUTTONS } from "../../../strings";
@@ -100,7 +101,7 @@ function EllipsizedCellWithTooltip({ title, children, sx }) {
   );
 }
 
-/** Ambil ordered stop_ids dari sebuah pattern row */
+/** Get ordered stop_ids from a pattern row */
 const toStopIds = (p) => {
   if (Array.isArray(p.stop_sequence) && p.stop_sequence.length) {
     return [...p.stop_sequence]
@@ -146,7 +147,7 @@ const CreateRoutePatternTab = ({
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailMeta, setDetailMeta] = useState(null);
 
-  // state untuk bulk delete
+  // State for bulk delete
   const [selectedPatterns, setSelectedPatterns] = useState({}); // pattern_id => bool
   const [showDiscontinueDialog, setShowDiscontinueDialog] = useState(false);
   const [patternsToConfirm, setPatternsToConfirm] = useState([]);
@@ -176,7 +177,7 @@ const CreateRoutePatternTab = ({
     return map;
   }, [routeGroups]);
 
-  // CONDITIONAL RETURNS SETELAH SEMUA HOOKS
+  // Conditional returns after all hooks
   // Keep rendering (and keep local form state) during refetch when we already have routeData.
   if (
     loadingRoutes &&
@@ -232,7 +233,6 @@ const CreateRoutePatternTab = ({
     String(r.route_id || "").toLowerCase().includes(filter.toLowerCase())
   );
 
-  // ====== render form create / edit bila aktif ======
   if (showCreateForm) {
     return (
       <CreateRouteForm
@@ -723,7 +723,7 @@ const CreateRoutePatternTab = ({
         </DialogActions>
       </Dialog>
 
-      {/* Confirm dialog untuk bulk delete */}
+      {/* Confirm dialog for bulk delete */}
       <DeleteRouteConfirmDialog
         open={showDiscontinueDialog}
         onClose={() => setShowDiscontinueDialog(false)}

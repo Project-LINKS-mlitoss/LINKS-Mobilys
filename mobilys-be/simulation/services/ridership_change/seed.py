@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 import logging
 from datetime import date as dt_date
 from decimal import Decimal, ROUND_HALF_UP

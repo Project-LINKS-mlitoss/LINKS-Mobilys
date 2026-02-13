@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from rest_framework import serializers
 from user.serializers.base import BaseResponseSerializer
 from user.models import Project

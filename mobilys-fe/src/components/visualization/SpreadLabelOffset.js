@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 /**
  * items: [{ coordinates: [lon, lat], label: string, ... }]
  * returns: same items + {_offset: [dx, dy]} in **pixels**

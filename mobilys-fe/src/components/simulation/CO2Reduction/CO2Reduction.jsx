@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/simulation/CO2Reduction/CO2Reduction.jsx
 import React, { useMemo, useState, useEffect } from "react";
 import {
@@ -33,9 +35,6 @@ const strings = SIMULATION.co2Reduction;
 const OUTER_RADIUS = CO2_REDUCTION_UI.outerRadius ?? 12;
 const CARD_RADIUS = CO2_REDUCTION_UI.cardRadius ?? 12;
 const ICON_COL_WIDTH = CO2_REDUCTION_UI.iconColWidth ?? 56;
-
-// keep header col count if you still want it elsewhere, but this implementation uses explicit OUTER_COLS
-// const HEADER_COLS = CO2_REDUCTION_UI.headerCols;
 
 const HeadTh = styled(TableCell)(({ theme }) => ({
   fontWeight: 700,

@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os

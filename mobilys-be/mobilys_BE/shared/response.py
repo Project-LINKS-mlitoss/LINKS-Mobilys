@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from rest_framework.response import Response
 from rest_framework import status as http_status
 from typing import Any, Optional, Dict, List, Union

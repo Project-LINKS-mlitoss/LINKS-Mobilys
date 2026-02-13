@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/visualization/boarding_alighting_analysis/RouteStopMap.jsx
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import {

@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import axios from "axios";
 
 const GTFS_FEEDS_API_LIST_URL = "https://api.gtfs-data.jp/v2/feeds";

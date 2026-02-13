@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from rest_framework import viewsets
 
 from gtfs.serializers.request.trip_frequency_request import (

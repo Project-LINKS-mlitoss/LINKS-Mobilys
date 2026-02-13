@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useMemo, useEffect } from "react";
 import { Polyline, Pane, useMap } from "react-leaflet";
 import { METRIC_BASE } from "./LegendPanel";

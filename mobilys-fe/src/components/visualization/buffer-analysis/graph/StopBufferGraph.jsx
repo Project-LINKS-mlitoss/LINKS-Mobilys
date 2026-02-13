@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/visualization/buffer_analysis/graph/StopBufferGraph.jsx
 import React, { useState, useMemo, useRef } from "react";
 import {

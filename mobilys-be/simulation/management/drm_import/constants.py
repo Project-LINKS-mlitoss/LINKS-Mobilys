@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 JP = {
     "KEY": "交通調査基本区間番号",
     "ROAD": "路線名",

@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 /**
  * Formats a date string into a Japanese date-time format.
  * @param {*} dateString - The date string to format.

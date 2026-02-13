@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from datetime import datetime, time as dtime
 from decimal import Decimal, ROUND_HALF_UP
 from math import cos, radians

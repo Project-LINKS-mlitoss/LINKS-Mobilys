@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from user.serializers.request.user_request import (
     CreateUserRequestSerializer,
     UpdateUserRequestSerializer,

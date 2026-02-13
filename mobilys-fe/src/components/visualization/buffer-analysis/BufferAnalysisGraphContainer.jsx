@@ -1,8 +1,9 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/visualization/buffer-analysis/BufferAnalysisGraphContainer.jsx
 import React, { useMemo } from "react";
 import { Box, Grid, Paper } from "@mui/material";
 
-import RouteAndStopBufferAnalysisGraph from "./graph/RouteAndStopBufferAnalysisGraph";
 import StopBufferGraph from "./graph/StopBufferGraph";
 import POIBufferGraph from "./graph/POIBufferGraph";
 import PopulationGraph from "./graph/PopulationGraph";
@@ -102,12 +103,6 @@ export default function BufferAnalysisGraphContainer({
       : undefined;
 
   // Slice arrays up to the active cutoff so they follow the slider
-  const routeAndStopData = useMemo(() => {
-    return typeof visibleCount === "number"
-      ? routeAndStopDataAll.slice(0, visibleCount)
-      : routeAndStopDataAll;
-  }, [routeAndStopDataAll, visibleCount]);
-
   const stopData = useMemo(() => {
     return typeof visibleCount === "number"
       ? stopDataAll.slice(0, visibleCount)
@@ -214,11 +209,6 @@ export default function BufferAnalysisGraphContainer({
         <Grid item xs={12}>
           <StopBufferGraph data={stopData} activeMinutes={activeMinutes} scenarioName={scenarioName} />
         </Grid>
-
-        {/* 1) Route + Stops */}
-        {/* <Grid item xs={12}>
-          <RouteAndStopBufferAnalysisGraph data={routeAndStopData} />
-        </Grid> */}
 
         {/* 2) POI distribution */}
         <Grid item xs={12}>

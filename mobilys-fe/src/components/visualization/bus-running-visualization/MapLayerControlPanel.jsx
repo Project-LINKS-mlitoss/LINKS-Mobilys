@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useMemo } from "react";
 import { Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";

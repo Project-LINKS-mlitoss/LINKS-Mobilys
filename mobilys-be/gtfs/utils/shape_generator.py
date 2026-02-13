@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 # utils/shape_generator.py
 
 from typing import Optional, Tuple, Iterable, List, Dict

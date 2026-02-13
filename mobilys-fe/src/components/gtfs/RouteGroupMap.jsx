@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React, { useMemo, useRef, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import {

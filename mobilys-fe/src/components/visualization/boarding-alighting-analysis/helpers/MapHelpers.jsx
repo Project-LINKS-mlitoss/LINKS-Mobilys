@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useEffect, useRef } from "react";
 import { useMap, useMapEvents } from "react-leaflet";
 

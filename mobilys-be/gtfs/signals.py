@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver

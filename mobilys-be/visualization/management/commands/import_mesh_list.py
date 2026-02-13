@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 import csv
 from pathlib import Path
 from django.core.management.base import BaseCommand

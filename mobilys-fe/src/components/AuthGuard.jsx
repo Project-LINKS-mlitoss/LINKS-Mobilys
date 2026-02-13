@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useAuthStore } from "../state/authStore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

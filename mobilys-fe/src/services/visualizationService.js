@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { ApiError } from "../utils/errors/ApiError";
 import { ERRORS } from "../constant/errorMessages";
 import { VISUALIZATION } from "../strings";

@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 #!/usr/bin/env python3
 """
 Bootstrap script that imports the static mesh and population datasets.

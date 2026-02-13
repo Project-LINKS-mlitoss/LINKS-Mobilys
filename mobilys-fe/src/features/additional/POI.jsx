@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import { Box, Divider, Paper, Backdrop, CircularProgress } from "@mui/material";
 import "leaflet/dist/leaflet.css";

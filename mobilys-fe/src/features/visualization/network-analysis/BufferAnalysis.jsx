@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Box, Typography } from "@mui/material";
 
 import BufferAnalysisFilterPanel from "../../../components/visualization/buffer-analysis/BufferAnalysisFilterPanel";

@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Alert, Box, CircularProgress, Tab, Tabs, Typography } from "@mui/material";
 import UsersTab from "../../components/user-management/user-tab/UsersTab";
 import RolesTab from "../../components/user-management/role-tab/RolesTab";

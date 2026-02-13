@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from simulation.services.car_routing.service import CarRoutingService
 from simulation.services.car_routing.candidates import (
     build_comparative_candidates,

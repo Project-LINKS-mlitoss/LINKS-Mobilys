@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 export function toNumber(val, fallback = 0) {
   const n = parseFloat(String(val).replace(",", "."));
   return Number.isFinite(n) ? n : fallback;

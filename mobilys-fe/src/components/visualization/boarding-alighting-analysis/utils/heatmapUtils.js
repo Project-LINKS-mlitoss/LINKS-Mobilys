@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 /**
  * Generate heatmap color based on intensity ratio (0-1)
  * @param {number} t - Intensity ratio (0-1)

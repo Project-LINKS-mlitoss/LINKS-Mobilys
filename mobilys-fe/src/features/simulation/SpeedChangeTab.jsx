@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import { Paper, Stack, Typography, Box, CircularProgress, Alert } from "@mui/material";
 import SpeedChange from "../../components/simulation/speed-change/SpeedChange";

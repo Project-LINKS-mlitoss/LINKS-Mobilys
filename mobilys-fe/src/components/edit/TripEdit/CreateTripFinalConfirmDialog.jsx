@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Table, TableHead, TableRow, TableCell, TableBody, Backdrop, CircularProgress } from "@mui/material";
 import { LABELS, BUTTONS } from "../../../strings";
 import { MESSAGES } from "../../../constant";

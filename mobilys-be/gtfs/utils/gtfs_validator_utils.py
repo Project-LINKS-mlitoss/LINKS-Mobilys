@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 # constants/gtfs_validation.py
 
 GTFS_NOTICE_TITLES = {

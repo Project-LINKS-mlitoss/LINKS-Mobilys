@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 """Django model choices.
 
 This module provides direct access to choices tuples for Django model fields.

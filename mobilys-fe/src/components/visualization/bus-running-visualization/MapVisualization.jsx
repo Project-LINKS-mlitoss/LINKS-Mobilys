@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // MapVisualization.jsx
 import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { Box, IconButton, Paper, Typography } from "@mui/material";

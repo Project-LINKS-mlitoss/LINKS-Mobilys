@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Box } from "@mui/material";
 import { VISUALIZATION } from "@/strings";
 import POIRoadNetworkGraph from "./graph/POIRoadNetworkGraph";

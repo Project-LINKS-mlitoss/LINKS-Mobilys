@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/visualization/boarding_alighting_analysis/BoardingAlightingMap.jsx
 import React, { useState, useMemo, useRef } from "react";
 import {
@@ -417,8 +419,6 @@ export default function BoardingAlightingMap({
         whenCreated={(m) => { mapRef.current = m; }}
         style={{ width: "100%", height: "100%" }}
         preferCanvas={true}
-      // zoomControl={false}          
-      // attributionControl={false}   
       >
         <MapInteractionTracker
           onMoveOrZoomEnd={() => setLastInteractionTime(Date.now())}

@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import { Stack, CircularProgress, Typography } from "@mui/material";
 import ScenarioFeedInfoForm from "../../components/edit/FeedEdit/ScenarioFeedInfoForm";

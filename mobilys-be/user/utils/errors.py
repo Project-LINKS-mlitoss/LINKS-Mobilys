@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 class ErrorMessages:
     VALIDATION_ERROR = "Validation error"
     AUTHENTICATION_REQUIRED = "Authentication required"

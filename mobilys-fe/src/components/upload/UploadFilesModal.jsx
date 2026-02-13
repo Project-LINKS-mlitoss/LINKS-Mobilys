@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import {
 	Dialog,
 	DialogTitle,
@@ -30,7 +32,7 @@ function formatBytes(bytes) {
 }
 
 /**
- * Props tambahan:
+ * Additional Props:
  * - variant: "modal" | "inline" (default: "modal")
  * - onAddFiles: (File[]) => void
  * - accept: string (default: ".csv")
@@ -59,7 +61,7 @@ export default function UploadFilesModal({
 		e.target.value = "";
 	};
 
-	// width kolom ukuran (konsisten inline & modal)
+	// size column width (consistent between inline & modal)
 	const SIZE_COL_W = 96;
 
 	const renderItem = (f, idx) => (
@@ -67,13 +69,13 @@ export default function UploadFilesModal({
 			key={`${f.name}-${f.size}-${idx}`}
 			sx={{
 				py: 1,
-				// tiga kolom: nama | ukuran | aksi
+				// three columns: name | size | action
 				display: "grid",
 				gridTemplateColumns: `1fr ${SIZE_COL_W}px auto`,
 				alignItems: "center",
 				columnGap: 8,
 			}}>
-			{/* Nama file */}
+			{/* File name */}
 			<Typography
 				variant='body2'
 				sx={{ minWidth: 0, wordBreak: "break-all", pr: 1 }}
@@ -81,7 +83,7 @@ export default function UploadFilesModal({
 				{f.name}
 			</Typography>
 
-			{/* Ukuran (rata kanan, lebar tetap) */}
+			{/* Size (right-aligned, fixed width) */}
 			<Typography
 				variant='body2'
 				sx={{ width: SIZE_COL_W, textAlign: "right", color: "text.secondary" }}
@@ -89,7 +91,7 @@ export default function UploadFilesModal({
 				{formatBytes(f.size)}
 			</Typography>
 
-			{/* Hapus */}
+			{/* Remove */}
 			{onRemoveAt && (
 				<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
 					<IconButton

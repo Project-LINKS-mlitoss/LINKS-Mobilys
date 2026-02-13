@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from visualization.services.boarding_alighting.checker_service import (
     check_boarding_alighting_data,
     get_available_route_keywords,

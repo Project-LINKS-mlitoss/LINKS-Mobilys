@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 import uuid
 
 from django.conf import settings
@@ -133,45 +135,3 @@ class GtfsSafeNoticeRule(models.Model):
 
     def __str__(self) -> str:
         return f"[{self.severity}] {self.code} (active={self.is_active}, skip={self.skip})"
-    
-# this model is commented out for we have decided that mobliys will not currently support geojson locations.
-
-# class GeoJsonLocation(models.Model):
-#     """
-#     locations.geojson
-
-#     Zones where riders can request pickup/drop-off, as GeoJSON polygons.
-#     Each Feature has:
-#       - id (unique across stops.stop_id, locations.geojson id, location_groups)
-#       - properties.stop_name
-#       - properties.stop_desc
-#       - geometry (Polygon or MultiPolygon)
-#     """
-#     scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE)
-
-#     geojson_id = models.CharField(
-#         max_length=200,
-#         help_text="Feature 'id' in locations.geojson",
-#     )
-#     stop_name = models.CharField(max_length=255, blank=True)
-#     stop_desc = models.TextField(blank=True)
-
-#     geometry = gis_models.GeometryField(
-#         srid=4326,
-#         help_text="Polygon or MultiPolygon in WGS84",
-#     )
-
-#     created_datetime = models.DateTimeField(auto_now_add=True)
-#     updated_datetime = models.DateTimeField(auto_now=True)
-
-#     class Meta:
-#         db_table = "locations_geojson"
-#         constraints = [
-#             models.UniqueConstraint(
-#                 fields=["scenario", "geojson_id"],
-#                 name="unique_geojson_location_per_scenario",
-#             )
-#         ]
-
-#     def __str__(self):
-#         return self.stop_name or self.geojson_id

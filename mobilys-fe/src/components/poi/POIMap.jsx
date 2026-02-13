@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/poi/POIMap.jsx
 import React, { useMemo, useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, useMap } from "react-leaflet";

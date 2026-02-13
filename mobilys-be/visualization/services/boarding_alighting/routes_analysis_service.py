@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from collections import defaultdict, Counter
 from datetime import datetime, timedelta, time as dtime
 from django.db.models import Min, Max
@@ -317,7 +319,7 @@ def build_boarding_alighting_routes(body):
         trip_stop_sequences[last_tid] = [r["stop_id"] for r in buf]
         trip_stop_sequences_with_seq[last_tid] = [(r["stop_id"], int(r["stop_sequence"])) for r in buf]
 
-    # fallback dari data payload (kalau StopTimes ga lengkap)
+    # Fallback to the payload data when StopTimes are incomplete
     if len(trip_stop_sequences) < len(target_trips):
         for tid in target_trips:
             if tid in trip_stop_sequences:

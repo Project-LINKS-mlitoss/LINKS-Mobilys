@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { Chip, CircularProgress, Stack } from "@mui/material";
 import { RIDERSHIP } from "../../strings/domains/ridership";
 

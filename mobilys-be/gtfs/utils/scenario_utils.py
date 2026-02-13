@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from django.db import transaction
 from django.utils import timezone
 from django.core.exceptions import ValidationError
@@ -685,10 +687,6 @@ def generate_gtfs_zip_export(
         'route_networks': ('route_networks.txt', lambda: RouteNetwork.objects.filter(scenario_id=scenario_id)),
     }
 
-    # 3) decide which to include
-    # if include_files:
-    #     keys = [k for k in include_files if k in table_map]
-    # else:
     keys = list(table_map.keys())
 
     EXCLUDED_FIELDS = ['id', 'scenario', 'created_datetime', 'updated_datetime']

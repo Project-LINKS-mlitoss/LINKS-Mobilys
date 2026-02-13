@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import { useCallback, useEffect, useState } from "react";
 
 export default function useFullscreen() {

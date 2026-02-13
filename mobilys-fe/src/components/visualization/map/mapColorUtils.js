@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 export function niceStep(max, n = 5) {
   if (!max || max <= 0) return 1;
   const raw = max / n;

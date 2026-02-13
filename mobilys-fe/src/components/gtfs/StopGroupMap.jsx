@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // StopGroupMap.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import {

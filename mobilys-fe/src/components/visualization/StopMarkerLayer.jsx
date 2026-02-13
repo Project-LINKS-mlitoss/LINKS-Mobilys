@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/visualization/StopMarkerLayer.jsx
 import React, { useState, useRef, useEffect } from "react";
 import L from "leaflet";

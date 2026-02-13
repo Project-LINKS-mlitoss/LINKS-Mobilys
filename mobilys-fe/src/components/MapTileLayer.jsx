@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import { TileLayer } from "react-leaflet";
 import { getBaseLayerItemByKey } from "../constant/map.js";

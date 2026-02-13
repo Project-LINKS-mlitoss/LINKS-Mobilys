@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import axios from "axios";
 import { useAuthStore } from "../state/authStore";
 import { useSnackbarStore } from "../state/snackbarStore";

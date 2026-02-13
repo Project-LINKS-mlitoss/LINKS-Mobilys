@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 import React from "react";
 import { Box, Typography, CircularProgress, Tab, Tabs } from "@mui/material";
 import { ADDITIONAL } from "../../strings";

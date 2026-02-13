@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 // src/components/edit/TripFrequencyEdit/FrequencyEditorPage.jsx
 import React, { useMemo, useState, useCallback, useEffect } from "react";
 import {
@@ -38,7 +40,6 @@ import "leaflet/dist/leaflet.css";
 import RoutePatternMap from "../RouteEdit/RoutePatternMap";
 import { EllipsizedCell } from "../../gtfs/ImportDetailRouteGroupTab";
 import { formatSectionLabel } from "../../../utils/text";
-//import { wordBreak } from "html2canvas/dist/types/css/property-descriptors/word-break";
 
 const directionMap = { 0: LABELS.trip.inbound, 1: LABELS.trip.outbound };
 
@@ -52,8 +53,8 @@ const toNum = (v, fallback = 0) => {
 const calcFinal = (base, mult, delta) =>
   Math.max(0, Math.round(toNum(base) * toNum(mult, 1) + toNum(delta)));
 
-// Check apakah multiplier value adalah input yang valid (bukan partial)
-// Partial input: "", "0", "0.", "." → belum selesai, jangan trigger perhitungan
+// Check whether the multiplier value is a valid input (not a partial entry)
+// Partial input: "", "0", "0.", "." -> still incomplete, do not trigger the calculation
 const isValidMultInput = (value) => {
   if (value === undefined || value === "") return false;
   if (value === "0" || value === "0." || value === ".") return false;
@@ -61,13 +62,13 @@ const isValidMultInput = (value) => {
   return !isNaN(num) && num > 0;
 };
 
-// Hitung multiplier minimum supaya total tidak jadi 0
-// - Jika base >= 2: target minimal 2
-// - Jika base = 1: target minimal 1 (tidak bisa dikurangi)
+// Calculate the minimum multiplier so the total does not become zero
+// - If base >= 2: minimum target is 2
+// - If base = 1: minimum target is 1 (cannot be reduced)
 const calcMinMult = (base, delta) => {
   if (base <= 0) return 0;
 
-  // Target minimal: 2 jika base >= 2, otherwise 1
+  // Minimum target: 2 when base >= 2, otherwise 1
   const target = base >= 2 ? 2 : 1;
 
   // base * mult + delta >= target
@@ -76,21 +77,21 @@ const calcMinMult = (base, delta) => {
   return Math.max(0, Math.ceil(minMult * 100) / 100);
 };
 
-// Hitung effective multiplier
-// - Jika tidak ada input valid sama sekali → return 1 (no change)
-// - Jika ada input group valid → clamp ke minMult supaya total tidak < 1 (atau < 2 jika possible)
-// - Jika ada input row valid → gunakan row value (sudah divalidasi saat input)
+// Calculate the effective multiplier
+// - If there is no valid input at all -> return 1 (no change)
+// - If there is a valid group input -> clamp to minMult so the total stays >= 1 (or >= 2 when possible)
+// - If there is a valid row input -> use the row value (already validated on input)
 const calcEffectiveMult = (base, delta, groupMultValue, rowMultValue) => {
-  // Check row input dulu
+  // Check row input first
   if (isValidMultInput(rowMultValue)) {
     return toNum(rowMultValue, 1);
   }
   // Check group input
   if (!isValidMultInput(groupMultValue)) {
-    // Tidak ada input valid, return 1 (no change)
+    // No valid input, return 1 (no change)
     return 1;
   }
-  // Ada input valid di group level, clamp ke minMult
+  // Valid group input -> clamp to minMult
   const minMult = calcMinMult(base, delta);
   return Math.max(toNum(groupMultValue, 1), minMult);
 };
@@ -834,10 +835,10 @@ const FrequencyEditorPage = ({
                                 }));
                                 return;
                               }
-                              // Hanya izinkan angka dan titik desimal (tanpa minus)
+                              // Only allow digits and decimal points (no minus)
                               if (!/^\d*\.?\d*$/.test(raw)) return;
 
-                              // Izinkan input yang belum lengkap (bisa jadi desimal)
+                              // Allow partial inputs (e.g., incomplete decimal)
                               const isPartialInput =
                                 raw === "." ||
                                 raw === "0" ||
@@ -854,8 +855,8 @@ const FrequencyEditorPage = ({
                               const val = Number(raw);
                               if (isNaN(val)) return;
                               if (val > 10) return;
-                              // Tidak ada validasi min 2 di group level
-                              // Route level akan otomatis di-clamp ke minimum yang diperlukan
+                              // No minimum-2 validation at the group level
+                              // Route level will automatically clamp to the required minimum
 
                               setGroupMult((p) => ({
                                 ...p,
@@ -932,9 +933,9 @@ const FrequencyEditorPage = ({
                                   ? toNum(groupDelta[g.group_route_id], 0)
                                   : toNum(rowDelta[key], 0);
 
-                              // Hitung minimum multiplier untuk pattern ini (untuk validasi input)
+                              // Calculate the minimum multiplier for this pattern (for input validation)
                               const minMult = calcMinMult(base, d);
-                              // Effective multiplier yang akan digunakan (pass raw values)
+                              // Effective multiplier to use (pass raw values)
                               const effectiveMult = calcEffectiveMult(base, d, gMultValue, rowMult[key]);
                               const after = calcFinal(base, effectiveMult, d);
 
@@ -1123,10 +1124,10 @@ const FrequencyEditorPage = ({
                                           }));
                                           return;
                                         }
-                                        // Hanya izinkan angka dan titik desimal (tanpa minus)
+                                        // Only allow digits and decimal points (no minus)
                                         if (!/^\d*\.?\d*$/.test(raw)) return;
 
-                                        // Izinkan input yang belum lengkap (bisa jadi desimal)
+                                        // Allow partial inputs (e.g., incomplete decimal)
                                         const isPartialInput =
                                           raw === "." ||
                                           raw === "0" ||
@@ -1143,7 +1144,7 @@ const FrequencyEditorPage = ({
                                         const val = Number(raw);
                                         if (isNaN(val)) return;
                                         if (val > 10) return;
-                                        // Validasi: nilai tidak boleh kurang dari minMult
+                                        // Validation: value must not be less than minMult
                                         if (val < minMult) return;
                                         setRowMult((prev) => ({
                                           ...prev,
@@ -1151,7 +1152,7 @@ const FrequencyEditorPage = ({
                                         }));
                                       }}
                                       placeholder={
-                                        // Tampilkan effective multiplier sebagai placeholder
+                                        // Show effective multiplier as placeholder
                                         effectiveMult !== 1
                                           ? String(effectiveMult)
                                           : ""
@@ -1184,16 +1185,16 @@ const FrequencyEditorPage = ({
                                         const val = Number(raw);
                                         if (base === 1 && val > 15) return;
 
-                                        // Tentukan multiplier yang akan digunakan untuk validasi
+                                        // Determine the multiplier to use for validation
                                         let m2;
                                         if (isValidMultInput(rowMult[key])) {
-                                          // User sudah input row multiplier valid
+                                          // User already provided a valid row multiplier
                                           m2 = toNum(rowMult[key], 1);
                                         } else if (isValidMultInput(gMultValue)) {
-                                          // Ada group input valid, effective mult = max(gMult, minMult)
+                                          // Valid group input: effective mult = max(gMult, minMult)
                                           m2 = Math.max(toNum(gMultValue, 1), calcMinMult(base, val));
                                         } else {
-                                          // Tidak ada input multiplier valid, gunakan 1
+                                          // No valid multiplier input, use 1
                                           m2 = 1;
                                         }
 

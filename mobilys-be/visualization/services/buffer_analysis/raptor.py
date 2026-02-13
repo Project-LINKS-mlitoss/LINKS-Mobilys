@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from collections import defaultdict
 from datetime import datetime, timedelta
 import time

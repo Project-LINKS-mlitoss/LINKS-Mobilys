@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from gtfs.services.base import chunked_transactional, log_service_call, transactional
 from rest_framework import status
 from collections import defaultdict, Counter

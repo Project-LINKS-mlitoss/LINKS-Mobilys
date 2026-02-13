@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from fastapi import APIRouter, UploadFile, Form, File, HTTPException, Query
 from app.services.graph_builder import build_graph, delete_graph_dir
 from app.services.router_manager import delete_router, launch_router, restart_router

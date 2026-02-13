@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 class Messages:
     # Shared
     SCENARIO_NOT_FOUND_EN = "Scenario not found."

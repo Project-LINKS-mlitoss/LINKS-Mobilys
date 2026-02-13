@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from simulation.services.ridership_change.service import RidershipChangeService
 from simulation.services.ridership_change.seed import _seed_ridership_changes
 from simulation.services.ridership_change.baselines import (

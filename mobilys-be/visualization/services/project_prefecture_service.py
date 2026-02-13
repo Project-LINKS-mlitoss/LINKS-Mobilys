@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from typing import List, Optional, Dict, Any
 
 from data.prefecture_map import PREFECTURE_NAME_MAP

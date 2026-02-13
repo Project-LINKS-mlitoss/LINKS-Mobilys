@@ -1,3 +1,5 @@
+// Copyright (c) 2025-2026 MLIT Japan
+// SPDX-License-Identifier: MIT
 export function num(n) {
   if (n === null || n === undefined) return "-";
   const x = Number(n);

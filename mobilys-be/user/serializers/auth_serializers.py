@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 """
 Authentication serializers.
 Business logic has been moved to user/services/auth_service.py

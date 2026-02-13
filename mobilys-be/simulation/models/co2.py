@@ -1,3 +1,5 @@
+# Copyright (c) 2025-2026 MLIT Japan
+# SPDX-License-Identifier: MIT
 from django.db import models
 
 from simulation.constants.choices import STATUS_CHOICES
