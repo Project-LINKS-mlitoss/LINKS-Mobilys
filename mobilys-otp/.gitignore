@@ -12,3 +12,4 @@ graphs/*/
 *.pyc
 
 router_map.json
+otp-*-shaded.jar

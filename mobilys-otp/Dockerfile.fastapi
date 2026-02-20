@@ -1,7 +1,11 @@
 FROM python:3.11-slim-bookworm
 
 WORKDIR /app
-ENV PYTHONPATH="/usr/lib/python3/dist-packages:${PYTHONPATH}"
+ENV PYTHONPATH="/usr/lib/python3/dist-packages" \
+    OTP_JAR="/opt/otp.jar"
+
+ARG OTP_VERSION=1.5.0
+ARG OTP_MAVEN_BASE=https://repo1.maven.org/maven2/org/opentripplanner/otp
 
 # Install Java 11 (Temurin), Docker CLI, and basic tools
 RUN apt-get update && \
@@ -12,11 +16,19 @@ RUN apt-get update && \
     apt-get install -y temurin-11-jre && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN set -eux; \
+    otp_jar_url="${OTP_MAVEN_BASE}/${OTP_VERSION}/otp-${OTP_VERSION}-shaded.jar"; \
+    curl -fL "${otp_jar_url}" -o /opt/otp.jar; \
+    curl -fsSL "${otp_jar_url}.sha1" -o /tmp/otp.jar.sha1; \
+    echo "$(cat /tmp/otp.jar.sha1)  /opt/otp.jar" | sha1sum -c -; \
+    rm -f /tmp/otp.jar.sha1
+
 # Install Python deps
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy app code
 COPY . .
+RUN chmod +x /app/docker-entrypoint.fastapi.sh
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "4"]
+CMD ["/app/docker-entrypoint.fastapi.sh"]

@@ -75,6 +75,8 @@ services:
     build:
       context: ./mobilys-gtfs-validator
       dockerfile: Dockerfile
+      args:
+        GTFS_VALIDATOR_VERSION: ${GTFS_VALIDATOR_VERSION:-7.1.0}
     container_name: validator
     volumes:
       - ./mobilys-gtfs-validator:/app

@@ -13,6 +13,9 @@ def build_graph(scenario_id: str, prefecture: str, gtfs_filename: str, gtfs_byte
     build_dir = paths.graph_dir(scenario_id)
     paths.ensure_dir(build_dir)
 
+    if not config.OTP_JAR.exists():
+        raise FileNotFoundError(f"OTP JAR not found at '{config.OTP_JAR}'")
+
     graph_obj_path = paths.graph_obj_path(scenario_id)
     if graph_obj_path.exists():
         graph_obj_path.unlink()

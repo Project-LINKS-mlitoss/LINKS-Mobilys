@@ -5,3 +5,4 @@ tmp/
 *.log
 *.cache
 __pycache__/
+otp-*-shaded.jar

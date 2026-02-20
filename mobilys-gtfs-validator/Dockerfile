@@ -1,7 +1,10 @@
 FROM python:3.12-slim
 
+ARG GTFS_VALIDATOR_VERSION=7.1.0
+ARG GTFS_VALIDATOR_BASE_URL=https://github.com/MobilityData/gtfs-validator/releases/download
+
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends openjdk-21-jdk-headless && \
+    apt-get install -y --no-install-recommends openjdk-21-jdk-headless curl ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONUNBUFFERED=1 \
@@ -11,8 +14,10 @@ ENV PYTHONUNBUFFERED=1 \
     VALIDATOR_TIMEOUT_SECONDS=900 \
     MAX_CONCURRENT_JOBS=1
 
-
-COPY gtfs-validator-cli.jar ${GTFS_VALIDATOR_JAR}
+RUN set -eux; \
+    jar_url="${GTFS_VALIDATOR_BASE_URL}/v${GTFS_VALIDATOR_VERSION}/gtfs-validator-${GTFS_VALIDATOR_VERSION}-cli.jar"; \
+    mkdir -p /opt/gtfs; \
+    curl -fL "${jar_url}" -o "${GTFS_VALIDATOR_JAR}"
 
 WORKDIR /app
 COPY requirements.txt .
