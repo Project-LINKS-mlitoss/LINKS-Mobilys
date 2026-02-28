@@ -187,8 +187,8 @@ export const VISUALIZATION = {
         busRunningTripCountAnalysis: "運行本数分析",
         stopRadiusAnalysis: "公共交通圏域",
         radiusAnalysis: "スポット分析",
-        odAnalysis: "ODデータ分析",
-        boardingAlightingAnalysis: "乗降データのダッシュボード",
+        odAnalysis: "OD分析",
+        boardingAlightingAnalysis: "乗降集計データのダッシュボード",
         routeTimetable: "経路・時刻表",
     },
     bufferAnalysis: {
@@ -753,7 +753,7 @@ export const VISUALIZATION = {
             stopUsers: "停留所別利用者数",
         },
         upload: {
-            resultTitle: "乗降データインポート結果",
+            resultTitle: "乗降集計データインポート結果",
             invalidCsvHeaders:
                 "CSVのヘッダーが不正です。次のヘッダーが必要です: date, agency_id, route_id, trip_id, stop_id, stop_sequence, count_geton, count_getoff",
             summary: {
@@ -793,9 +793,9 @@ export const VISUALIZATION = {
         components: {
             dashboard: {
                 emptyState: {
-                    title: "まだ乗降データがありません",
+                    title: "まだ乗降集計データがありません",
                     description:
-                        "左側の「乗降データ管理」からCSVをインポートすると、日別ダッシュボードを表示できます。",
+                        "左側の「乗降集計データ管理」からCSVをインポートすると、日別ダッシュボードを表示できます。",
                 },
                 labels: {
                     passengers: "乗降数",
@@ -910,7 +910,7 @@ export const VISUALIZATION = {
                 },
             },
             dataManagement: {
-                title: "乗降データ管理",
+                title: "乗降集計データ管理",
                 gtfsWarning:
                     "このシナリオはGTFS編集で作成されたものです。利用実績・乗降が路線や便や停留所などに正しく表示されないことがあります。",
                 requiredScenario: "シナリオ",
@@ -926,10 +926,10 @@ export const VISUALIZATION = {
                     dashboard: "ダッシュボード",
                 },
                 labels: {
-                    importedData: "インポート済み乗降データ",
+                    importedData: "インポート済み乗降集計データ",
                     filename: "ファイル名",
                     importedAt: "インポート日時",
-                    analysisReport: "乗降データの分析レポート",
+                    analysisReport: "乗降集計データの分析レポート",
                 },
                 statuses: {
                     readingCsv: "CSVを読み込んでいます...",
@@ -943,7 +943,7 @@ export const VISUALIZATION = {
                 },
                 filenames: {
                     templateBase: "jyoukou_template",
-                    defaultDisplayFilename: "乗降データ",
+                    defaultDisplayFilename: "乗降集計データ",
                 },
                 csvTemplate: `date,agency_id,route_id,trip_id,stop_id,stop_sequence,count_geton,count_getoff
 20251001,5230001002133,４１号線（笹津・猪谷）線(112_1_1),平日_06時05分_系統112_1_1,101_05,1,5,0
@@ -1042,7 +1042,7 @@ export const VISUALIZATION = {
                 fileTitleBody: "起点・終点一覧",
             },
             management: {
-                title: "ODデータ管理",
+                title: "駅・バス停間ODデータ管理",
                 actions: {
                     import: "インポート",
                     delete: "削除",
@@ -1050,7 +1050,7 @@ export const VISUALIZATION = {
                 },
                 messages: {
                     importingCsv: "CSVを読み込んでいます...",
-                    importedData: "インポート済みODデータ",
+                    importedData: "インポート済み駅・バス停間ODデータ",
                 },
                 labels: {
                     filename: "ファイル名",
@@ -1070,7 +1070,7 @@ export const VISUALIZATION = {
                     requiredColumnsPrefix: "必要な列:",
                 },
                 defaults: {
-                    uploadedFilename: "ODデータ",
+                    uploadedFilename: "駅・バス停間ODデータ",
                 },
             },
             legend: {
@@ -1104,7 +1104,7 @@ export const VISUALIZATION = {
             },
         },
         upload: {
-            resultTitle: "ODデータインポート結果",
+            resultTitle: "駅・バス停間ODデータインポート結果",
             invalidCsvHeaders:
                 "CSV header is invalid. Required: date, agency_id, route_id, stopid_geton, stopid_getoff, count",
             invalidRecordsTitle: "無効なレコード（形式エラー）",

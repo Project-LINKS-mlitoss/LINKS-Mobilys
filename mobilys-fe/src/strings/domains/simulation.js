@@ -173,7 +173,7 @@ export const SIMULATION = {
     },
     sections: {
       scenario: "シナリオ",
-      upload: "乗降データインポート",
+      upload: "乗降集計データインポート",
       params: "パラメータ設定",
     },
     scenarioRows: {
@@ -181,7 +181,7 @@ export const SIMULATION = {
       after: "将来シナリオ (After)",
     },
     uploader: {
-      requiredValue: "乗降データ",
+      requiredValue: "乗降集計データ",
       emptyText:
         "ファイルをここにドラッグ＆ドロップ、またはクリックして選択してください",
       acceptLabel: "対応形式：CSV",
@@ -605,7 +605,7 @@ export const SIMULATION = {
         meaning:
           "現行または将来シナリオにおいて、１日に公共交通を利用すると予測される人数です。",
         how:
-          "現行シナリオでは乗降データに基づき利用者数を算出し、将来シナリオでは現行の利用者数と増減係数を用いて見込み利用者数を算出します。",
+          "現行シナリオでは乗降集計データに基づき利用者数を算出し、将来シナリオでは現行の利用者数と増減係数を用いて見込み利用者数を算出します。",
       },
       daily_trips: {
         title: "運行本数（本/日）",

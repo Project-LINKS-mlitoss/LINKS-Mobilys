@@ -124,7 +124,7 @@ class Command(BaseCommand):
             ('経路・時刻表', 'route-timetable'),
             ('公共交通圏域', 'stop-radius-analysis'),
             ('乗降分析', 'boarding-alighting-analysis'),
-            ('ODデータ分析', 'od-analysis'),
+            ('OD分析', 'od-analysis'),
             ('シミュレーションシ', 'simulation'),
             ('ホーム','scenarios'),
             ('パスワード変更', 'password-change'),

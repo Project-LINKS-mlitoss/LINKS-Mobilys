@@ -29,7 +29,7 @@ export const NAVIGATION = {
       roadNetworkAnalysisDrm: "到達圏分析(DRM)",
       stopRadiusAnalysis: "公共交通圏域",
       boardingAlightingAnalysis: "乗降分析",
-      odAnalysis: "ODデータ分析",
+      odAnalysis: "OD分析",
       simulation: "シミュレーション",
       userManagement: "ユーザー管理",
       passwordChange: "パスワード変更",

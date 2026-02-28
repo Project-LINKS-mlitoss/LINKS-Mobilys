@@ -44,10 +44,10 @@ class RidershipUploadService:
         try:
             Notification.objects.create(
                 user=user,
-                message=f"{ridership_record_name}の一件明細データのアップロードを開始しました。完了するまでしばらくお待ちください。",
+                message=f"{ridership_record_name}の乗降実績データのアップロードを開始しました。完了するまでしばらくお待ちください。",
                 notification_path="",
                 scenario_id=scenario_id,
-                screen_menu="一件明細データアップロード",
+                screen_menu="乗降実績データアップロード",
                 is_read=False,
                 description="message",
             )
@@ -113,7 +113,7 @@ class RidershipUploadService:
                     message=f"{ridership_record_name}のアップロードが完了しました。",
                     notification_path="additional-data?tab=onedetailed",
                     scenario_id=scenario_id,
-                    screen_menu="一件明細データアップロード",
+                    screen_menu="乗降実績データアップロード",
                     is_read=False,
                     description="success",
                 )
@@ -191,7 +191,7 @@ class RidershipUploadService:
                     message=f"{ridership_record_name}のアップロード中にエラーが発生しました。詳細をご確認ください。",
                     notification_path="",
                     scenario_id=scenario_id,
-                    screen_menu="一件明細データアップロード",
+                    screen_menu="乗降実績データアップロード",
                     is_read=False,
                     description="error",
                     error_response={"error": str(e), "upload_id": str(ridership_upload.id)},

@@ -130,7 +130,7 @@ export const ERRORS = {
         updateCalendarDates: "カレンダー例外日の保存に失敗しました。",
     },
     ridership: {
-        uploadFile: "乗降データのアップロードに失敗しました。",
+        uploadFile: "乗降集計データのアップロードに失敗しました。",
         listUploads: "アップロード履歴の取得に失敗しました。",
         uploadDetail: "アップロード詳細の取得に失敗しました。",
         listRecords: "レコードの取得に失敗しました。",

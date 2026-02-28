@@ -11,9 +11,9 @@ export const ADDITIONAL = {
     title: "関連データインポート",
     tabs: {
       poi: "施設",
-      oneDetailed: "一件明細データ",
-      ridership: "乗降データ",
-      od: "ODデータ",
+      oneDetailed: "乗降実績データ",
+      ridership: "乗降集計データ",
+      od: "駅・バス停間ODデータ",
     },
   },
 };

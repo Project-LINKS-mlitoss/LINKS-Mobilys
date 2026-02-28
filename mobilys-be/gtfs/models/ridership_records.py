@@ -20,7 +20,7 @@ from .ridership_uploads import RidershipUpload
 
 class RidershipRecord(models.Model):
     """
-    乗降実績（1件明細データ）
+    乗降実績データ
     ICカード利用による乗降実績を記録するモデル
     Based on: 1件明細のデータ変換.xlsx - Sheet4
     """
@@ -313,7 +313,7 @@ class RidershipRecord(models.Model):
     
     # 39. 精算日時 (Required)
     payment_at = models.DateTimeField(
-        help_text="精算日時。一件明細が作成された日時(鉄道であれば出場、バスであれば乗車もしくは降車の精算時)"
+        help_text="精算日時。乗降実績データが作成された日時(鉄道であれば出場、バスであれば乗車もしくは降車の精算時)"
     )
     
     # 40. 大人障がい者利用者数

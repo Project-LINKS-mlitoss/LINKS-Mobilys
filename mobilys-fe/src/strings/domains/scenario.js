@@ -176,7 +176,7 @@ export const SCENARIO = {
             desc: "路線や停留所の乗降車数や通過人員を、時間帯別に分析できます。",
           },
           odAnalysis: {
-            title: "ODデータ分析",
+            title: "OD分析",
             descLine1: "Origin（起点）と",
             descLine2:
               "Destination（終点）を分析し、人の移動の流れを把握することができます。",

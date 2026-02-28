@@ -8,9 +8,9 @@
 
 export const RIDERSHIP = {
   oneDetailed: {
-    title: "一件明細データ",
+    title: "乗降実績データ",
     description:
-      "一件明細データの情報を補完します。乗車・降車日時と停留所の情報からどの便に乗車したかを推定します。推定した便の情報から乗降実績データとODデータの作成に必要なGTFSの情報を紐づけて、一件明細データの値を補完します。",
+      "アップロードされた乗降実績データとGTFSデータの紐づけ処理を行います。アップロードした乗降実績データに含まれる乗車・降車日時と停留所の情報をもとに、利用された路線・便を推測・補完します。処理済みの乗降実績データは、乗降集計データおよび駅・バス停間ODデータとして出力することも可能です。",
     scenarioSelect: {
       label: "シナリオ",
       missing: "シナリオがありません。",
@@ -73,7 +73,7 @@ export const RIDERSHIP = {
       },
     },
     recordList: {
-      title: "一件明細レコード",
+      title: "乗降実績プレビュー",
       filters: {
         upload: "アップロード",
         selectPlaceholder: "選択してください",
@@ -97,10 +97,10 @@ export const RIDERSHIP = {
       },
     },
     uploadModal: {
-      title: "一件明細データアップロード",
+      title: "乗降実績データアップロード",
       fields: {
         recordName: "データ名",
-        recordNamePlaceholder: "例: 2025年3月 乗降データ",
+        recordNamePlaceholder: "例: 2025年3月 乗降実績データ",
         toleranceMinutes: "遅延時間許容値",
         fileSelect: "ファイル選択",
         fileDropPrompt: "ファイルをここにドラッグ＆ドロップ、またはクリックして選択してください",
@@ -177,8 +177,8 @@ export const RIDERSHIP = {
     },
   },
   boardingAlighting: {
-    title: "乗降データ",
-    description: "一件明細データ（アップロード履歴）から乗降データ（CSV）を作成します。",
+    title: "乗降集計データ",
+    description: "乗降実績データ（アップロード履歴）から乗降集計データ（CSV形式）を作成します。",
     scenarioSelect: {
       label: "シナリオ",
     },
@@ -200,13 +200,13 @@ export const RIDERSHIP = {
       empty: "アップロード履歴がありません。",
     },
     actions: {
-      downloadCsv: "乗降データを作成",
+      downloadCsv: "乗降集計データを作成",
       disabledTooltip: "completed / partial のみ変換可能",
     },
     dialog: {
       title: "CSV作成の確認",
       message:
-        "一件明細データ（アップロード履歴）から乗降データ（CSV）を作成してダウンロードします。よろしいですか？",
+        "乗降実績データ（アップロード履歴）から乗降集計データ（CSV形式）を作成してダウンロードします。よろしいですか？",
       fileLabel: "元ファイル:",
       hint: "作成処理に時間がかかる場合があります。",
       cancel: "キャンセル",
@@ -223,8 +223,8 @@ export const RIDERSHIP = {
     },
   },
   odData: {
-    title: "ODデータ",
-    description: "一件明細データ（アップロード履歴）からODデータ（CSV）を作成します。",
+    title: "駅・バス停間ODデータ",
+    description: "乗降実績データ（アップロード履歴）から駅・バス停間ODデータ（CSV）を作成します。",
     scenarioSelect: {
       label: "シナリオ",
     },
@@ -246,13 +246,13 @@ export const RIDERSHIP = {
       empty: "アップロード履歴がありません。",
     },
     actions: {
-      downloadCsv: "ODデータを作成",
+      downloadCsv: "駅・バス停間ODデータを作成",
       disabledTooltip: "completed / partial のみ変換可能",
     },
     dialog: {
       title: "CSV作成の確認",
       message:
-        "一件明細データ（アップロード履歴）からODデータ（CSV）を作成してダウンロードします。よろしいですか？",
+        "乗降実績データ（アップロード履歴）から駅・バス停間ODデータ（CSV）を作成してダウンロードします。よろしいですか？",
       fileLabel: "元ファイル:",
       hint: "作成処理に時間がかかる場合があります。",
       cancel: "キャンセル",
@@ -260,7 +260,7 @@ export const RIDERSHIP = {
       confirming: "作成中...",
     },
     snackbar: {
-      exportCompleted: "CSV（ODデータ）をダウンロードしました",
+      exportCompleted: "駅・バス停間ODデータ（CSV形式）をダウンロードしました",
       exportFailedTitle: "変換に失敗しました",
     },
     fileName: {
