@@ -253,7 +253,13 @@ docker-compose build
 ## 5-1 前提条件
 本ツールのソースファイルの構成は以下のようになっています。
 
-![](../resources/devMan/tutorial_028.png)
+|フォルダ名|詳細|
+|---|---|
+|mobilys-be |バックエンド|
+|mobilys-fe|フロントエンド|
+|mobilys-otp|OpenTripPlannerを使用した経路探索サービス|
+|mobilys-gtfs-validator|GTFSフィード検証マイクロサービス|
+
 
 ## 5-2 ビルド前準備
 ビルドを行う際には以下のソフトウェアが必要です。<br>以下がインストールされていることを確認してください。
@@ -372,10 +378,6 @@ docker-compose down -v
 |mobilys-otp|OpenTripPlannerを使用した経路探索サービス|
 |mobilys-gtfs-validator|GTFSフィード検証マイクロサービス|
 <br>
-
-### 注意事項
-
-本マニュアルの手順は動作確認を目的とした構成例です。実運用の際は、適切なセキュリティ対策を利用者自身の責任で実施してください。本手順の利用により生じた損害について、作成者は責任を負いかねます。
 
 
 # 6 準備物一覧
