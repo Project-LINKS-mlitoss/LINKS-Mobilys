@@ -1,0 +1,20 @@
+FROM eclipse-temurin:11-jre
+WORKDIR /app
+
+ARG OTP_VERSION=1.5.0
+ARG OTP_MAVEN_BASE=https://repo1.maven.org/maven2/org/opentripplanner/otp
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN set -eux; \
+    otp_jar_url="${OTP_MAVEN_BASE}/${OTP_VERSION}/otp-${OTP_VERSION}-shaded.jar"; \
+    curl -fL "${otp_jar_url}" -o /app/otp.jar; \
+    curl -fsSL "${otp_jar_url}.sha1" -o /tmp/otp.jar.sha1; \
+    echo "$(cat /tmp/otp.jar.sha1)  /app/otp.jar" | sha1sum -c -; \
+    rm -f /tmp/otp.jar.sha1
+
+ENV ROUTER_ID=default
+
+CMD ["sh", "-c", "java -Xmx4G -jar otp.jar --graphs ./graphs --router $ROUTER_ID --server --port 8080"]

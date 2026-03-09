@@ -1,0 +1,15 @@
+{
+  "rows": [
+    {"index": 1, "coef_a": -3.346, "intercept_b": 72.650},
+    {"index": 2, "coef_a": -1.156, "intercept_b": 50.750},
+    {"index": 3, "coef_a": -0.606, "intercept_b": 42.500},
+    {"index": 4, "coef_a": -0.378, "intercept_b": 37.940},
+    {"index": 5, "coef_a": -0.258, "intercept_b": 34.940},
+    {"index": 6, "coef_a": -0.134, "intercept_b": 31.220},
+    {"index": 7, "coef_a": -0.064, "intercept_b": 28.770},
+    {"index": 8, "coef_a": -0.036, "intercept_b": 27.650},
+    {"index": 9, "coef_a": -0.014, "intercept_b": 26.660},
+    {"index": 10, "coef_a": 0.010, "intercept_b": 25.460},
+    {"index": 11, "coef_a": 0.028, "intercept_b": 24.470}
+  ]
+}

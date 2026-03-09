@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    container_name: otp-fastapi
+    volumes:
+      - .:/app  # Mounts the entire project
+      - /var/run/docker.sock:/var/run/docker.sock  # ⬅ ADD THIS LINE
+    working_dir: /app
+    ports:
+      - "8001:8001"
+
+  otp-router-base:
+    build:
+      context: .
+      dockerfile: Dockerfile.otp
+    image: otp-router-image
+    entrypoint: ["echo", "OTP base image built."]
+    restart: "no"
+
+  nginx:
+    image: nginx:latest
+    container_name: otp-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/router_configs:/etc/nginx/conf.d/routers:ro

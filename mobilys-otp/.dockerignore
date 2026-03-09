@@ -1,0 +1,8 @@
+preloaded_osm_files/
+preloaded_drm_files/
+graphs/
+tmp/
+*.log
+*.cache
+__pycache__/
+otp-*-shaded.jar

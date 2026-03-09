@@ -1,0 +1,271 @@
+/* ============================================
+   MapVisualization.css
+   ============================================ */
+
+/* Note: Grayscale filter is now applied via JavaScript in ApplyGrayscaleFilter component,
+   so no CSS rules needed for grayscale effect */
+
+
+/* ============================================
+   Stop Label Tooltips (Custom Styles)
+   ============================================ */
+.leaflet-tooltip.stop-label-tooltip {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #58AB39;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+.leaflet-tooltip.stop-label-tooltip::before {
+  display: none;
+}
+
+
+/* ============================================
+   Route Label Tooltips
+   ============================================ */
+.leaflet-tooltip.route-label-tooltip {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 6px #fff,
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff;
+}
+
+.leaflet-tooltip.route-label-tooltip::before {
+  display: none;
+}
+
+
+/* ============================================
+   Custom Marker Icons
+   ============================================ */
+.custom-stop-marker {
+  background-color: #58AB39;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.custom-stop-marker:hover {
+  background-color: #4a9330;
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
+
+/* ============================================
+   Leaflet Control Panel Customization
+   ============================================ */
+.leaflet-control-layers {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+}
+
+
+/* ============================================
+   Map Container Adjustments
+   ============================================ */
+.leaflet-container {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-popup-content {
+  margin: 12px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+@media (max-width: 768px) {
+  .leaflet-tooltip.stop-label-tooltip {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .leaflet-tooltip.route-label-tooltip {
+    font-size: 12px;
+  }
+}
+
+
+/* ============================================
+   Accessibility Improvements
+   ============================================ */
+.leaflet-interactive:focus {
+  outline: 2px solid #58AB39;
+  outline-offset: 2px;
+}
+
+.leaflet-control-zoom a:focus,
+.leaflet-control-attribution a:focus {
+  outline: 2px solid #58AB39;
+  outline-offset: 1px;
+}
+
+
+/* ============================================
+   Animation Utilities
+   ============================================ */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.marker-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+  .leaflet-control-zoom,
+  .leaflet-control-attribution {
+    display: none;
+  }
+}
+/* -----------------------------
+   Road Network popup overrides
+   ----------------------------- */
+.leaflet-popup.rn-popup .leaflet-popup-content-wrapper {
+  padding: 8px 10px !important;        /* tighter padding */
+}
+.leaflet-popup.rn-popup .leaflet-popup-content {
+  font-size: 12px !important;           /* ↓ overall body size */
+  line-height: 1.4 !important;
+  letter-spacing: 0.01em;
+}
+
+/* Title tweaks (covers <strong>, typical MUI Typography, etc.) */
+.leaflet-popup.rn-popup .leaflet-popup-content strong,
+.leaflet-popup.rn-popup .leaflet-popup-content h1,
+.leaflet-popup.rn-popup .leaflet-popup-content h2,
+.leaflet-popup.rn-popup .leaflet-popup-content h3,
+.leaflet-popup.rn-popup .leaflet-popup-content .MuiTypography-root {
+  font-size: 13px !important;           /* slightly bigger than body */
+  font-weight: 700 !important;
+  margin: 0 0 4px !important;
+  line-height: 1.35 !important;
+}
+
+/* If your button inside popup is MUI, make it compact as well */
+.leaflet-popup.rn-popup .leaflet-popup-content .MuiButton-root {
+  font-size: 12px !important;
+  padding: 4px 8px !important;
+  border-radius: 10px !important;
+  min-height: 0 !important;
+}
+
+/* -----------------------------
+   Buffer popup overrides
+   ----------------------------- */
+.leaflet-popup.buffer-popup .leaflet-popup-content-wrapper {
+  padding: 8px 10px !important;
+}
+.leaflet-popup.buffer-popup .leaflet-popup-content {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+.leaflet-popup.buffer-popup .leaflet-popup-content strong,
+.leaflet-popup.buffer-popup .leaflet-popup-content h1,
+.leaflet-popup.buffer-popup .leaflet-popup-content h2,
+.leaflet-popup.buffer-popup .leaflet-popup-content h3,
+.leaflet-popup.buffer-popup .leaflet-popup-content .MuiTypography-root {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  margin: 0 0 4px !important;
+  line-height: 1.35 !important;
+}
+.leaflet-popup.buffer-popup .leaflet-popup-content .MuiButton-root {
+  font-size: 12px !important;
+  padding: 4px 8px !important;
+  border-radius: 10px !important;
+  min-height: 0 !important;
+}
+
+/* ============ Shrink-wrap popups to their text ============ */
+/* Apply to Road Network (rn-popup) and Buffer (buffer-popup) only */
+
+.leaflet-popup.rn-popup .leaflet-popup-content-wrapper,
+.leaflet-popup.buffer-popup .leaflet-popup-content-wrapper {
+  display: inline-block;
+  /* shrink to content width, but never overflow viewport */
+  width: fit-content;
+  max-width: 90vw;
+  padding: 6px 8px !important;          /* compact */
+  border-radius: 10px !important;
+}
+
+.leaflet-popup.rn-popup .leaflet-popup-content,
+.leaflet-popup.buffer-popup .leaflet-popup-content {
+  width: auto !important;               /* allow shrink */
+  margin: 6px 8px !important;           /* tighter inner space */
+  padding: 0 !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;                 /* wrap long JP names to new line */
+  line-height: 1.4 !important;
+  font-size: 12px !important;            /* keep the compact body size you chose */
+}
+
+/* Optional: slightly smaller pointer so the bubble feels lighter */
+.leaflet-popup.rn-popup .leaflet-popup-tip,
+.leaflet-popup.buffer-popup .leaflet-popup-tip {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+/* Tighten vertical spacing between children */
+.leaflet-popup.rn-popup .leaflet-popup-content > *,
+.leaflet-popup.buffer-popup .leaflet-popup-content > * {
+  margin-bottom: 6px !important;
+}
+.leaflet-popup.rn-popup .leaflet-popup-content > *:last-child,
+.leaflet-popup.buffer-popup .leaflet-popup-content > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Make the close button sit a bit tighter in the corner */
+.leaflet-popup.rn-popup .leaflet-popup-close-button,
+.leaflet-popup.buffer-popup .leaflet-popup-close-button {
+  top: 6px !important;
+  right: 6px !important;
+}
+
+/* Hide Leaflet UI when exporting */
+.map-exporting .leaflet-control-container,
+.map-exporting .leaflet-control-attribution {
+  display: none !important;
+}
+

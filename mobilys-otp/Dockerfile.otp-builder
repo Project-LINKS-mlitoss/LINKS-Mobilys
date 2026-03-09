@@ -1,0 +1,31 @@
+FROM eclipse-temurin:17-jre
+RUN apt-get update && apt-get install -y python3-pip unzip wget ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN pip3 install awscli==1.32.112
+
+ARG OTP_VERSION=1.5.0
+RUN curl -L -o /opt/otp.jar \
+  https://repo1.maven.org/maven2/org/opentripplanner/otp/${OTP_VERSION}/otp-${OTP_VERSION}-shaded.jar
+
+ENV JAVA_OPTS="-Xmx8g" \
+    ROUTER_ID="default" \
+    OSM_S3_URI="" \
+    GTFS_S3_URI="" \
+    OUTPUT_S3_URI=""  # e.g., s3://bucket/graphs/<router_id>/Graph.obj
+
+WORKDIR /work
+RUN mkdir -p /work/input /work/graphs
+
+RUN printf '%s\n' \
+'#!/usr/bin/env sh' \
+'set -e' \
+'echo "[builder] router=$ROUTER_ID"' \
+'[ -n "$OSM_S3_URI" ] && aws s3 cp "$OSM_S3_URI" /work/input/map.osm.pbf' \
+'[ -n "$GTFS_S3_URI" ] && aws s3 cp "$GTFS_S3_URI" /work/input/gtfs.zip' \
+'echo "[builder] building graph…"' \
+'java $JAVA_OPTS -jar /opt/otp.jar --build /work' \
+'echo "[builder] upload Graph.obj -> $OUTPUT_S3_URI"' \
+'aws s3 cp /work/Graph.obj "$OUTPUT_S3_URI"' \
+'echo "[builder] done"' \
+> /usr/local/bin/build-graph.sh && chmod +x /usr/local/bin/build-graph.sh
+
+CMD ["/usr/local/bin/build-graph.sh"]

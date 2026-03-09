@@ -1,0 +1,8 @@
+/* Load classic Material Icons just for POI map */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+/* Make sure the icon spans behave nicely in Leaflet divIcons */
+.leaflet-poi-icon .material-icons {
+  line-height: 1;
+  display: inline-block;
+}

@@ -1,0 +1,7 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Local validator binaries
+gtfs-validator-cli.jar
+gtfs-validator-*-cli.jar
