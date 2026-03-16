@@ -4,7 +4,7 @@
 ## 更新履歴
 | 更新日時 | リリース | 更新内容 |
 | ---- | ---- | ---- |
-| 2026/02/27 | 1st Release | 初版リリース |
+| 2026/03/09 | 1st Release | 初版リリース |
 
 ## 1. 概要 
 本リポジトリでは、国土交通省が推進する[Project LINKS](https://www.mlit.go.jp/links/)及び地域交通DXプロジェクト[COMmmmONS（コモンズ）](https://www.mlit.go.jp/commmmons/)が連携した2025年度の取組である「公共交通計画策定支援ツール開発プロジェクト」について、その成果物である地域公共交通計画策定支援ツール「LINKS Mobilys（リンクス モビリス）」のソースコードを公開しています。
@@ -18,10 +18,12 @@
 本システムでは、COMmmmONS（コモンズ）が進める「モビリティ・データ標準化プロジェクト」と連携し、同プロジェクトが策定した[「乗降実績データ標準仕様書（鉄道・バス）」](https://www.mlit.go.jp/commmmons/document/005/)に対応することで円滑なデータ入力が可能となっています。  
 また、国土交通省が定める公共交通運行情報の標準データ仕様である[「GTFS-JP」](https://www.mlit.go.jp/sogoseisaku/transport/sosei_transport_tk_000067.html)に対応しています。  
 
-本システムの技術的な詳細については、技術検証レポート（2026年3月公開予定）を参照してください。
+本システムの詳細は、[「地域公共交通計画策定支援ツール「LINKS Mobilys」 技術検証レポート」](https://www.mlit.go.jp/commmmons/tech_report/012/)を参照してください。
 
 ## 3. 利用手順 
-本システムの[構築手順](./doc/devMan.md)及び利用手順については[利用マニュアル](https://www.mlit.go.jp/commmmons/document/008/commmmons_doc_008_ver01.pdf)を参照してください。
+
+本システムの環境構築手順は[環境構築マニュアル](./doc/devMan.md)、利用手順は[利用マニュアル](https://www.mlit.go.jp/commmmons/document/008/commmmons_doc_008_ver01.pdf)を参照してください。
+
 
 
 ## 4. システム概要 
@@ -204,12 +206,17 @@
 - 本リポジトリの利用により生じた損失及び損害等について、国土交通省はいかなる責任も負わないものとします。
 
 ## 10. 参考資料 
-- 公共交通計画策定支援ツール開発プロジェクト　プロジェクトレポート
-  - #1　https://www.mlit.go.jp/commmmons/projectreport/12_01/
+- 公共交通計画策定支援ツール開発プロジェクト プロジェクトレポート
+  - #1 https://www.mlit.go.jp/commmmons/projectreport/12_01/
+  - #2 https://www.mlit.go.jp/commmmons/projectreport/12_02/
 
-- 地域公共交通計画策定支援ツール開発技術検証レポート（2026年3月公開予定）
+- 地域公共交通計画策定支援ツール「LINKS Mobilys」 技術検証レポート（2026年3月公開予定）
 
 - 公共交通運行情報標準データ仕様書（GTFS-JP）v4（2026年3月公開予定）
 
 - 乗降実績データ標準仕様書（鉄道・バス）
-  - #1　https://www.mlit.go.jp/commmmons/document/005/
+  - https://www.mlit.go.jp/commmmons/document/005/
+- Project LINKS Webサイト
+  - https://www.mlit.go.jp/links/
+- COMmmmONS Webサイト
+  - https://www.mlit.go.jp/commmmons/
