@@ -31,4 +31,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 RUN chmod +x /app/docker-entrypoint.fastapi.sh
 
-CMD ["/app/docker-entrypoint.fastapi.sh"]
+CMD ["sh", "/app/docker-entrypoint.fastapi.sh"]
