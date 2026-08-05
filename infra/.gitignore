@@ -1,5 +1,6 @@
 # Terraform ローカル作業ファイル
 .terraform/
+.tfbin/
 .terraform.lock.hcl
 tfplan
 *.tfstate

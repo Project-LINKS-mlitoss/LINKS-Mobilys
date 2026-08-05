@@ -19,7 +19,7 @@ Phase 2以降（Lambda本体・Fargate/EFS・RDS Proxy・WAF）は本構成に�
 
 ## 前提
 
-- Terraform >= 1.10
+- AWS CLI（認証設定済み）。**Terraformのインストールは不要** — 未インストールの場合は `bootstrap.sh` が公式サイトからSHA256検証付きで自動ダウンロードする（`infra/.tfbin/` に配置、PATHは変更しない）。AWS CloudShell でもそのまま実行可能
 - 専用のdev用AWSアカウント推奨（デプロイロールの既定ポリシーが AdministratorAccess のため。`variables.tf` の `deploy_role_policy_arn` 参照。stg/prod 前に最小権限化すること）
 
 ## 初回ブートストラップ（AWS権限を持つ運用者が1回だけ実施）
