@@ -1,0 +1,73 @@
+# フロントエンド自動デプロイ（dev） — 設計書2-1のFE配信をCI/CD化
+#
+# トリガー: mainへのマージ（mobilys-fe/** 変更時）または手動実行。
+# 静的資産の差し替えのみで破壊的操作を含まないため、Environment承認は
+# 挟まない（インフラ変更を伴う deploy-dev.yml とはリスクレベルが異なる）。
+# 接続先はdevアカウント 656827484543 の既定値を埋め込み済み
+# （リポジトリ変数 AWS_DEPLOY_ROLE_ARN / AWS_REGION / FRONTEND_BUCKET で上書き可）。
+
+name: Deploy Frontend (dev)
+
+on:
+  push:
+    branches: [main]
+    paths: ["mobilys-fe/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-frontend-dev
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build & publish to S3/CloudFront
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION || 'ap-northeast-1' }}
+      DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN || 'arn:aws:iam::656827484543:role/mobilys-dev-github-deploy' }}
+      FRONTEND_BUCKET: ${{ vars.FRONTEND_BUCKET || 'mobilys-dev-frontend-656827484543' }}
+      CLOUDFRONT_COMMENT: mobilys-dev frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: mobilys-fe/package-lock.json
+
+      - name: Build
+        working-directory: mobilys-fe
+        env:
+          # CloudFrontの /api/* ビヘイビア（Phase 2で接続）を前提とした同一オリジン相対パス
+          VITE_API_BASE_URL: /api
+          VITE_API_USERS_BASE_URL: /api
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Upload to S3
+        run: aws s3 sync mobilys-fe/dist/ "s3://${FRONTEND_BUCKET}/" --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          DIST_ID=$(aws cloudfront list-distributions \
+            --query "DistributionList.Items[?Comment=='${CLOUDFRONT_COMMENT}'].Id" --output text)
+          if [ -z "$DIST_ID" ] || [ "$DIST_ID" = "None" ]; then
+            echo "::error::CloudFrontディストリビューション（Comment='${CLOUDFRONT_COMMENT}'）が見つかりません"
+            exit 1
+          fi
+          aws cloudfront create-invalidation --distribution-id "$DIST_ID" --paths "/*"
+          DOMAIN=$(aws cloudfront list-distributions \
+            --query "DistributionList.Items[?Comment=='${CLOUDFRONT_COMMENT}'].DomainName" --output text)
+          echo "✅ デプロイ完了: https://${DOMAIN}/" >> "$GITHUB_STEP_SUMMARY"
