@@ -3,7 +3,8 @@
 # - PR（infra/** 変更時）: fmt / validate / checkov による静的検証のみ（AWS認証不要）
 # - workflow_dispatch: OIDCでAWSに接続し plan / apply を実行
 #   * apply は GitHub Environments `dev` の保護ルール（approver設定）で人間承認を挟める
-#   * 必要なリポジトリ変数: AWS_DEPLOY_ROLE_ARN / AWS_REGION / TF_STATE_BUCKET
+#   * 接続先は dev アカウント 656827484543 を既定値として埋め込み済み。
+#     リポジトリ変数 AWS_DEPLOY_ROLE_ARN / AWS_REGION / TF_STATE_BUCKET で上書き可能
 
 name: Deploy (dev)
 
@@ -58,6 +59,10 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: dev
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION || 'ap-northeast-1' }}
+      TF_STATE_BUCKET: ${{ vars.TF_STATE_BUCKET || 'mobilys-terraform-state-656827484543' }}
+      DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN || 'arn:aws:iam::656827484543:role/mobilys-dev-github-deploy' }}
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -66,14 +71,14 @@ jobs:
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
-          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ env.DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
       - name: Terraform init
         run: |
           terraform init \
-            -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
+            -backend-config="bucket=${TF_STATE_BUCKET}" \
             -backend-config="key=dev/terraform.tfstate" \
-            -backend-config="region=${{ vars.AWS_REGION }}" \
+            -backend-config="region=${AWS_REGION}" \
             -backend-config="encrypt=true" \
             -backend-config="use_lockfile=true"
       - name: Terraform plan

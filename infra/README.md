@@ -24,39 +24,21 @@ Phase 2以降（Lambda本体・Fargate/EFS・RDS Proxy・WAF）は本構成に�
 
 ## 初回ブートストラップ（AWS権限を持つ運用者が1回だけ実施）
 
+devアカウント **656827484543** 用の設定（`backend.hcl`・ワークフロー既定値）は反映済みです。
+アカウント 656827484543 の認証情報を設定した端末で、以下を実行するだけで構築できます。
+
 ```bash
-# 1. state用バケット作成（例）
-ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-aws s3 mb "s3://mobilys-terraform-state-${ACCOUNT_ID}" --region ap-northeast-1
-aws s3api put-bucket-versioning \
-  --bucket "mobilys-terraform-state-${ACCOUNT_ID}" \
-  --versioning-configuration Status=Enabled
-aws s3api put-public-access-block \
-  --bucket "mobilys-terraform-state-${ACCOUNT_ID}" \
-  --public-access-block-configuration \
-  BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
-
-# 2. バックエンド設定
 cd infra
-cp backend.hcl.example backend.hcl   # バケット名を実値に変更
-
-# 3. 初回 apply（以降はGitHub Actions経由）
-terraform init -backend-config=backend.hcl
-terraform plan -var-file=envs/dev.tfvars
-terraform apply -var-file=envs/dev.tfvars
+./bootstrap.sh          # stateバケット自動作成 + init + plan（内容確認）
+./bootstrap.sh apply    # 上記に加えて apply（適用前に対話確認あり）
 ```
+
+`bootstrap.sh` は冪等（再実行可能）で、誤アカウントに接続している場合は実行前に停止します。
 
 ## 初回 apply 後の GitHub 設定
 
-出力 `github_deploy_role_arn` を使い、リポジトリの **Settings → Secrets and variables → Actions → Variables** に以下を設定すると、以後のデプロイは GitHub Actions（`deploy-dev.yml`）から実行できます。
-
-| Variable | 値 |
-| --- | --- |
-| `AWS_DEPLOY_ROLE_ARN` | `terraform output github_deploy_role_arn` の値 |
-| `AWS_REGION` | `ap-northeast-1` |
-| `TF_STATE_BUCKET` | state用バケット名 |
-
-あわせて **Settings → Environments** で `dev` 環境を作成し、必要に応じて approver を設定してください（apply前の人間承認。計画書3-1）。
+- **Settings → Environments** で `dev` 環境を作成し、approver を設定してください（GitHub Actionsからのapply前の人間承認。計画書3-1）
+- リポジトリ変数（`AWS_DEPLOY_ROLE_ARN` / `AWS_REGION` / `TF_STATE_BUCKET`）の設定は**任意**です。アカウント 656827484543 用の既定値が `deploy-dev.yml` に埋め込み済みのため、別アカウント・別バケットを使う場合のみ設定してください
 
 ## 運用ルール（計画書3-3）
 
