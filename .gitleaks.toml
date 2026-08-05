@@ -1,0 +1,24 @@
+# gitleaks 設定（シークレットスキャン）
+# デフォルトルールを継承し、確認済みの誤検知のみ除外する。
+# 除外を追加する場合は必ず該当箇所を確認し、本物のシークレットでないことを
+# レビューで確認すること（doc/AI_DRIVEN_DEV_PLAN.md 3-4）。
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "確認済みの誤検知"
+regexTarget = "line"
+regexes = [
+  # React コードの識別子比較（activeKey === "population15_64" 等）が
+  # generic-api-key に誤マッチするため除外
+  '''Key === ["']''',
+  # 年齢区分レイヤーキーのオブジェクトリテラル（key: "population15_64" 等）
+  '''key: ["']population''',
+]
+paths = [
+  # AI開発ハーネス文書内の教材用ダミーキー（例: sk_live_abc123）
+  '''\.claude/''',
+  # ローカルビルド成果物（git管理外）
+  '''mobilys-fe/dist/''',
+]

@@ -1,0 +1,169 @@
+# CI 品質・セキュリティゲート（doc/AI_DRIVEN_DEV_PLAN.md 3-4）
+#
+# ブロッキング（必須化対象）:
+#   be-lint / be-unit-test / fe-build / secret-scan
+# 参考扱い（continue-on-error、初回グリーン確認後・既存問題解消後に必須化）:
+#   be-full-test（PostGIS必須の全スイート）
+#   fe-lint（既存コードに203件のESLintエラーがあるため。漸減させて必須化する）
+#   deps-audit（既存依存の脆弱性棚卸しが先）
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, "claude/**"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  be-lint:
+    name: Python lint (ruff critical)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff
+      # E9/F63/F7/F82 = 構文エラー・未定義名などの致命的問題のみ（初期閾値）
+      - run: ruff check --select E9,F63,F7,F82 mobilys-be mobilys-otp mobilys-gtfs-validator
+
+  be-unit-test:
+    name: Backend unit tests (DB不要)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobilys-be
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: mobilys-be/requirements.txt
+      - name: Install system deps (GDAL / ja_JP locale)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gdal-bin libgdal-dev locales
+          sudo locale-gen ja_JP.UTF-8
+      - run: pip install -r requirements.txt
+      - name: Prepare env
+        run: cp .env.example .env
+      - name: Run unit tests
+        run: python manage.py test visualization --verbosity 2
+
+  be-full-test:
+    name: Backend full tests (PostGIS) [advisory]
+    runs-on: ubuntu-latest
+    # TODO(計画書3-4): 初回グリーン確認後に continue-on-error を外して必須化
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: mobilys-be
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build & start project DB (PostGIS + pg_cron + pgRouting)
+        run: |
+          docker build -t mobilys-db -f Dockerfile.db .
+          docker run -d --name mobilys-db -p 5432:5432 \
+            -e POSTGRES_DB=mobilys -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres \
+            mobilys-db postgres \
+              -c shared_preload_libraries=pg_stat_statements,pg_cron \
+              -c cron.database_name=mobilys
+          for i in $(seq 1 30); do
+            docker exec mobilys-db pg_isready -U postgres && break
+            sleep 2
+          done
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: mobilys-be/requirements.txt
+      - name: Install system deps (GDAL / ja_JP locale)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gdal-bin libgdal-dev locales
+          sudo locale-gen ja_JP.UTF-8
+      - run: pip install -r requirements.txt
+      - name: Prepare env
+        run: cp .env.example .env
+      - name: Run full test suite
+        env:
+          DB_HOST: 127.0.0.1
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+        run: python manage.py test --verbosity 2
+
+  fe-build:
+    name: Frontend build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobilys-fe
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: mobilys-fe/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+
+  fe-lint:
+    name: Frontend lint [advisory]
+    runs-on: ubuntu-latest
+    # TODO(計画書3-4): 既存203エラーを漸減させゼロになった時点で必須化
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: mobilys-fe
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: mobilys-fe/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint
+
+  secret-scan:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deps-audit:
+    name: Dependency audit [advisory]
+    runs-on: ubuntu-latest
+    # TODO(計画書3-4): 既存依存の脆弱性棚卸し後に必須化
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: pip install pip-audit
+      - name: pip-audit (be / otp / validator)
+        run: |
+          pip-audit -r mobilys-be/requirements.txt --strict || exit 1
+          pip-audit -r mobilys-otp/requirements.txt --strict || exit 1
+          pip-audit -r mobilys-gtfs-validator/requirements.txt --strict || exit 1
+      - name: npm audit (fe)
+        working-directory: mobilys-fe
+        run: npm audit --audit-level=high
