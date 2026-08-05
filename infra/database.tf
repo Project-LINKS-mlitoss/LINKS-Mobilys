@@ -41,9 +41,11 @@ resource "aws_rds_cluster_parameter_group" "main" {
     apply_method = "pending-reboot"
   }
 
+  # cron.database_name は静的パラメータのため pending-reboot 必須
   parameter {
-    name  = "cron.database_name"
-    value = "mobilys"
+    name         = "cron.database_name"
+    value        = "mobilys"
+    apply_method = "pending-reboot"
   }
 
   parameter {
