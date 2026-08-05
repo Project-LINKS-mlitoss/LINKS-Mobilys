@@ -1,0 +1,42 @@
+# checkov ベースライン（dev環境の意図的な逸脱。計画書3-4）
+# 各スキップには理由を明記する。prod展開（Phase 4）前に全件再評価すること。
+framework:
+  - terraform
+
+skip-check:
+  # --- KMS CMK 系: dev は AWS管理キー/SSE-S3 で許容（CMKはコスト・運用増。prodで再評価） ---
+  - CKV_AWS_145  # S3 KMS暗号化（SSE-S3を使用）
+  - CKV_AWS_136  # ECR KMS暗号化（AES256を使用）
+  - CKV_AWS_149  # Secrets Manager KMS CMK（AWS管理キーを使用）
+  - CKV_AWS_327  # RDS KMS CMK（AWS管理キーで暗号化済み）
+  - CKV_AWS_354  # Performance Insights KMS CMK（AWS管理キーを使用）
+
+  # --- 可用性・DR 系: dev 不要（prodで再評価） ---
+  - CKV_AWS_144  # S3クロスリージョンレプリケーション
+  - CKV_AWS_310  # CloudFrontオリジンフェイルオーバー
+  - CKV2_AWS_8   # AWS Backupプラン（Aurora自動バックアップ7日で代替）
+  - CKV_AWS_118  # RDS拡張モニタリング（Performance Insightsで代替）
+
+  # --- ログ・通知系: Phase 4（監視整備）で導入 ---
+  - CKV_AWS_86   # CloudFrontアクセスログ
+  - CKV_AWS_18   # S3アクセスログ
+  - CKV2_AWS_62  # S3イベント通知（Phase 2でuploadsに導入予定）
+  - CKV2_AWS_27  # RDSクエリロギング（log_statement=all は dev では過剰。slow query logは有効）
+  - CKV2_AWS_11  # VPCフローログ（Phase 4の監視整備で導入）
+
+  # --- 設計判断済み（コード内コメント・README参照） ---
+  - CKV_AWS_274  # デプロイロールのAdministratorAccess（専用devアカウント前提。stg/prod前に最小権限化）
+  - CKV_AWS_139  # RDS削除保護（var.db_deletion_protection で環境別制御。prod=true）
+  - CKV_AWS_51   # ECRタグ不変性（devはMUTABLE。Phase 4でIMMUTABLE+ダイジェスト固定へ）
+  - CKV_AWS_374  # CloudFrontジオ制限（公共オープンデータのため制限しない）
+  - CKV_AWS_68   # CloudFront WAF（Phase 4で導入。frontend.tf の TODO 参照）
+  - CKV2_AWS_47  # WAF Log4j AMR（WAF導入時（Phase 4）に合わせて設定）
+  - CKV2_AWS_32  # レスポンスヘッダポリシー: AWSマネージドSecurityHeadersPolicyをID指定で適用済み
+                 # （checkovのグラフ検査はマネージドポリシーIDを認識できないため誤検知）
+  - CKV2_AWS_42  # CloudFrontカスタム証明書（独自ドメイン確定後）
+  - CKV_AWS_174  # TLS1.2最低バージョン（デフォルト証明書ではTLSv1固定仕様。カスタム証明書導入時に設定）
+  - CKV_AWS_382  # app SGのegress全許可（外部API: 地理院/GTFSリポジトリ/e-Stat/国土交通DPFへの通信に必要）
+  - CKV2_AWS_5   # app SG未アタッチ（Phase 2のLambda/Fargateで使用）
+  - CKV_AWS_21   # S3バージョニング（frontend/uploadsは再生成・再アップロード可能。artifactsは有効化済み）
+  - CKV2_AWS_61  # S3ライフサイクル（frontendはデプロイで全置換、artifactsはバージョニングで管理）
+  - CKV2_AWS_57  # Secretsの自動ローテーション（外部発行APIキーのため自動化不可。手動ローテーション運用）

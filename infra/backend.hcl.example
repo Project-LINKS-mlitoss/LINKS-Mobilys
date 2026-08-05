@@ -1,0 +1,9 @@
+# Terraform state バックエンド設定の例。
+# backend.hcl にコピーして値を設定し、`terraform init -backend-config=backend.hcl` で使用する。
+# バケットは infra/README.md のブートストラップ手順で事前に作成しておくこと。
+
+bucket       = "mobilys-terraform-state-<ACCOUNT_ID>"
+key          = "dev/terraform.tfstate"
+region       = "ap-northeast-1"
+encrypt      = true
+use_lockfile = true
