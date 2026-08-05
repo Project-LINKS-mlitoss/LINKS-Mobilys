@@ -82,6 +82,16 @@ def _offset_line(lon1: float, lat1: float, lon2: float, lat2: float,
     return p1, p2
 
 
+def _coords_centroid(coords: List[Tuple[float, float]]) -> Tuple[float, float]:
+    """(lon, lat)タプルのリストの重心を返す。空の場合は(0.0, 0.0)。"""
+    if not coords:
+        return 0.0, 0.0
+    xs = sum(c[0] for c in coords)
+    ys = sum(c[1] for c in coords)
+    n = len(coords)
+    return xs / n, ys / n
+
+
 def build_group_index(
     scenario: Scenario,
     grouping_method: str,
@@ -257,7 +267,7 @@ def build_stop_keyword_points(
             lon   = float(r["stop_names_long"] or 0.0)
             lat   = float(r["stop_names_lat"] or 0.0)
             if not lon or not lat:
-                lon, lat = _centroid(coords_by_label.get(label, []))  
+                lon, lat = _coords_centroid(coords_by_label.get(label, []))
             gk = f"name:{unique_id}"  
             props = {
                 "stop_keyword": name,
@@ -302,7 +312,7 @@ def build_stop_keyword_points(
             lon  = float(r["stop_id_long"] or 0.0)
             lat  = float(r["stop_id_lat"] or 0.0)
             if not lon or not lat:
-                lon, lat = _centroid(coords_by_gid.get(gid, []))
+                lon, lat = _coords_centroid(coords_by_gid.get(gid, []))
             gk = f"id:{gid}"  
             props = {
                 "stop_keyword": name,
