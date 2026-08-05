@@ -1,0 +1,88 @@
+# dev環境デプロイ（infra/README.md・計画書3-3）
+#
+# - PR（infra/** 変更時）: fmt / validate / checkov による静的検証のみ（AWS認証不要）
+# - workflow_dispatch: OIDCでAWSに接続し plan / apply を実行
+#   * apply は GitHub Environments `dev` の保護ルール（approver設定）で人間承認を挟める
+#   * 接続先は dev アカウント 656827484543 を既定値として埋め込み済み。
+#     リポジトリ変数 AWS_DEPLOY_ROLE_ARN / AWS_REGION / TF_STATE_BUCKET で上書き可能
+
+name: Deploy (dev)
+
+on:
+  pull_request:
+    paths: ["infra/**"]
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "実行内容"
+        type: choice
+        options: [plan, apply]
+        default: plan
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: infra
+
+jobs:
+  validate:
+    name: Terraform static checks
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.10.5"
+      - run: terraform fmt -check -recursive
+      - run: terraform init -backend=false
+      - run: terraform validate
+      - name: IaC security scan (checkov)
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: infra
+          framework: terraform
+          config_file: infra/.checkov.yaml
+          # ベースライン（意図的な逸脱）は infra/.checkov.yaml に理由付きで管理。
+          # TODO(計画書3-4): action側の挙動を初回実行で確認後、soft_fail を外して必須化
+          soft_fail: true
+
+  plan-apply:
+    name: Terraform plan / apply
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION || 'ap-northeast-1' }}
+      TF_STATE_BUCKET: ${{ vars.TF_STATE_BUCKET || 'mobilys-terraform-state-656827484543' }}
+      DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN || 'arn:aws:iam::656827484543:role/mobilys-dev-github-deploy' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.10.5"
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Terraform init
+        run: |
+          terraform init \
+            -backend-config="bucket=${TF_STATE_BUCKET}" \
+            -backend-config="key=dev/terraform.tfstate" \
+            -backend-config="region=${AWS_REGION}" \
+            -backend-config="encrypt=true" \
+            -backend-config="use_lockfile=true"
+      - name: Terraform plan
+        run: terraform plan -var-file=envs/dev.tfvars -input=false -out=tfplan
+      - name: Terraform apply
+        if: inputs.action == 'apply'
+        run: terraform apply -input=false tfplan
