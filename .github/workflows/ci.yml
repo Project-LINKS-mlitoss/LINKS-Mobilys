@@ -61,8 +61,6 @@ jobs:
   be-full-test:
     name: Backend full tests (PostGIS) [advisory]
     runs-on: ubuntu-latest
-    # TODO(計画書3-4): 初回グリーン確認後に continue-on-error を外して必須化
-    continue-on-error: true
     defaults:
       run:
         working-directory: mobilys-be
@@ -93,12 +91,19 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Prepare env
         run: cp .env.example .env
-      - name: Run full test suite
+      # 参考扱い: 上流由来のテストにDB実データ前提のものがあり現状failする
+      # （計画書3-5のバックログ）。テスト自己完結化の完了後に必須化する。
+      - name: Run full test suite [advisory]
+        id: fulltest
+        continue-on-error: true
         env:
           DB_HOST: 127.0.0.1
           DB_USER: postgres
           DB_PASSWORD: postgres
         run: python manage.py test --verbosity 2
+      - name: Advisory result
+        if: steps.fulltest.outcome == 'failure'
+        run: echo "⚠️ 全テストスイートに失敗あり（参考扱い）。ログを確認してください。" >> "$GITHUB_STEP_SUMMARY"
 
   fe-build:
     name: Frontend build
@@ -119,8 +124,6 @@ jobs:
   fe-lint:
     name: Frontend lint [advisory]
     runs-on: ubuntu-latest
-    # TODO(計画書3-4): 既存203エラーを漸減させゼロになった時点で必須化
-    continue-on-error: true
     defaults:
       run:
         working-directory: mobilys-fe
@@ -132,7 +135,15 @@ jobs:
           cache: npm
           cache-dependency-path: mobilys-fe/package-lock.json
       - run: npm ci --no-audit --no-fund
-      - run: npm run lint
+      # 参考扱い: 既存コードに203件のESLintエラーがあるため（計画書3-4）。
+      # 漸減させゼロになった時点で continue-on-error を外して必須化する。
+      - name: ESLint [advisory]
+        id: lint
+        continue-on-error: true
+        run: npm run lint
+      - name: Advisory result
+        if: steps.lint.outcome == 'failure'
+        run: echo "⚠️ ESLintエラーが残っています（参考扱い・漸減対象）。" >> "$GITHUB_STEP_SUMMARY"
 
   secret-scan:
     name: Secret scan (gitleaks)
@@ -148,8 +159,6 @@ jobs:
   deps-audit:
     name: Dependency audit [advisory]
     runs-on: ubuntu-latest
-    # TODO(計画書3-4): 既存依存の脆弱性棚卸し後に必須化
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -159,11 +168,19 @@ jobs:
         with:
           node-version: "22"
       - run: pip install pip-audit
-      - name: pip-audit (be / otp / validator)
+      # 参考扱い: 既存依存の脆弱性棚卸し（別PRで対応）完了後に必須化する（計画書3-4）
+      - name: pip-audit (be / otp / validator) [advisory]
+        id: pipaudit
+        continue-on-error: true
         run: |
-          pip-audit -r mobilys-be/requirements.txt --strict || exit 1
-          pip-audit -r mobilys-otp/requirements.txt --strict || exit 1
-          pip-audit -r mobilys-gtfs-validator/requirements.txt --strict || exit 1
-      - name: npm audit (fe)
+          pip-audit -r mobilys-be/requirements.txt --strict
+          pip-audit -r mobilys-otp/requirements.txt --strict
+          pip-audit -r mobilys-gtfs-validator/requirements.txt --strict
+      - name: npm audit (fe) [advisory]
+        id: npmaudit
+        continue-on-error: true
         working-directory: mobilys-fe
         run: npm audit --audit-level=high
+      - name: Advisory result
+        if: steps.pipaudit.outcome == 'failure' || steps.npmaudit.outcome == 'failure'
+        run: echo "⚠️ 依存関係に既知の脆弱性があります（参考扱い・棚卸し対象）。ジョブログを確認してください。" >> "$GITHUB_STEP_SUMMARY"
